@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="moyong的博客">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://moyong.top/2018/04/18/实习笔记/aleng.png">
-<meta property="og:updated_time" content="2018-05-10T08:31:01.689Z">
+<meta property="og:updated_time" content="2018-05-10T08:32:45.080Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="实习时记的一些笔记">
 <meta name="twitter:image" content="http://moyong.top/2018/04/18/实习笔记/aleng.png">
@@ -185,7 +185,7 @@
             <div id="toc-article" class="toc-article">
                 <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
                 <strong class="toc-title">文章目录</strong>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#笔记内容"><span class="toc-number">2.</span> <span class="toc-text">笔记内容</span></a></li></ol>
            </div>
            <script type="text/javascript">
             function showToc(){
@@ -207,7 +207,7 @@
       
         <p><img src="/2018/04/18/实习笔记/aleng.png" alt=""><br> <a id="more"></a></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>刚去公司实习的时候，还是比较勤奋的，遇到很多好的解决方案都会记下来，虽然都是很简单的东西，但是对自己帮助还是很大的，但是由于后面还是太懒了，所以记的笔记也不是很多，还是希望以后自己能多勤奋点记笔记把</p>
-<p>##笔记内容<br>1.当下拉框不是select时，而是使用ul，li的时候无法将name和value作为参数给表单提交，这时候可以使用一个隐藏域input作为当前想要提交的数据，通过选择时（单击事件等）把所要的值设置到value中即可。<br>2.this关键字。如果父类方法中有this的引用，如果是父类实例化后调用该方法，那么this指的是父类的实例，如果是子类实例化后调用该方法，那么指的是子类实例，既，哪个实例对象调用该方法就指的是谁的实例。<br>3.struts做国际化的时候中文配置文件输入中文需要把编码格式改成iso-8859-1,这样在读取中文内容的时候就不会出现乱码。<br>4.当for循环里面有需要根据id等条件去查询数据库的时候，为了避免for循环次数产生多次查询数据库，可以先把所有数据查出来放到一个map里面，key为id(或者要查找的条件)，value为当前条件查出来的值，或者for循环里你想要的查找的值。<br>5.一个方法返回得到两个数据可以使用引用传递。比如new 两个对象，把这两个对象放到方法中作为参数，执行这个方法后就可以得到改变后的这两个对象的内容数据。<br>6.通过定义一个boolean类型的全局变量（常量），然后进行判断用来切换新旧方法的实现。<br>7.可以使用函数重载（增加参数）。然后调用原来的方法来对方法进行扩展。<br>8.策略模式就是用来封装变化（算法）的，提供一个策略接口，不同的策略算法都实现这个接口，同时用一个工厂来生成不同的策略，生成策略的方法可以用反射，这样就不会因为新加策略而改动工厂。即抽象工厂+策略模式实现了减少类与类之间的耦合（依赖）。<br>9.遮罩层关闭之前调用此函数<br>function reload(){<br>        $(“.reload_btn”,parent.document).trigger(‘click’);<br>    }<br>背景层：重新加载页面   <li style="display:none;"><div class="reload_btn"></div></li>   不做任何事情，只是定义一个属性<br>$(“.reload_btn”).click(function(){<br>         location.reload();<br>     });<br>这样就可以实现遮罩层修改数据后，背景层能同步上。<br>10.json中对于{“字段”：null}这样的key,value键值对是不显示的，会隐藏掉。这时我们就需要用到fastjson的SerializerFeature序列化属性也就是这个方法：JSONObject.toJSONString(Object object, SerializerFeature… features)<br>11.clazz.getDeclaredFields();只能获取本类的所有字段，不能获取父类的字段。<br>12.获取数据库的数据时，如果要查全部，一定要谨慎，看看是不是有其他方案可以解决，尽量不要查全部，因为数据多了会有性能问题。<br>13.一些小细节：显示问题<br>待审核—》编辑<br>审核过—》查看</p>
+<h2 id="笔记内容"><a href="#笔记内容" class="headerlink" title="笔记内容"></a>笔记内容</h2><p>1.当下拉框不是select时，而是使用ul，li的时候无法将name和value作为参数给表单提交，这时候可以使用一个隐藏域input作为当前想要提交的数据，通过选择时（单击事件等）把所要的值设置到value中即可。<br>2.this关键字。如果父类方法中有this的引用，如果是父类实例化后调用该方法，那么this指的是父类的实例，如果是子类实例化后调用该方法，那么指的是子类实例，既，哪个实例对象调用该方法就指的是谁的实例。<br>3.struts做国际化的时候中文配置文件输入中文需要把编码格式改成iso-8859-1,这样在读取中文内容的时候就不会出现乱码。<br>4.当for循环里面有需要根据id等条件去查询数据库的时候，为了避免for循环次数产生多次查询数据库，可以先把所有数据查出来放到一个map里面，key为id(或者要查找的条件)，value为当前条件查出来的值，或者for循环里你想要的查找的值。<br>5.一个方法返回得到两个数据可以使用引用传递。比如new 两个对象，把这两个对象放到方法中作为参数，执行这个方法后就可以得到改变后的这两个对象的内容数据。<br>6.通过定义一个boolean类型的全局变量（常量），然后进行判断用来切换新旧方法的实现。<br>7.可以使用函数重载（增加参数）。然后调用原来的方法来对方法进行扩展。<br>8.策略模式就是用来封装变化（算法）的，提供一个策略接口，不同的策略算法都实现这个接口，同时用一个工厂来生成不同的策略，生成策略的方法可以用反射，这样就不会因为新加策略而改动工厂。即抽象工厂+策略模式实现了减少类与类之间的耦合（依赖）。<br>9.遮罩层关闭之前调用此函数<br>function reload(){<br>        $(“.reload_btn”,parent.document).trigger(‘click’);<br>    }<br>背景层：重新加载页面   <li style="display:none;"><div class="reload_btn"></div></li>   不做任何事情，只是定义一个属性<br>$(“.reload_btn”).click(function(){<br>         location.reload();<br>     });<br>这样就可以实现遮罩层修改数据后，背景层能同步上。<br>10.json中对于{“字段”：null}这样的key,value键值对是不显示的，会隐藏掉。这时我们就需要用到fastjson的SerializerFeature序列化属性也就是这个方法：JSONObject.toJSONString(Object object, SerializerFeature… features)<br>11.clazz.getDeclaredFields();只能获取本类的所有字段，不能获取父类的字段。<br>12.获取数据库的数据时，如果要查全部，一定要谨慎，看看是不是有其他方案可以解决，尽量不要查全部，因为数据多了会有性能问题。<br>13.一些小细节：显示问题<br>待审核—》编辑<br>审核过—》查看</p>
 <p>sql语句：<br>in() 集合要记得判断空，size是否等于0<br>not in ()要谨慎，几乎是查询全部，要考虑数据量</p>
 <p>一些不可逆的操作一定要再次弹框提示，比如删除，填写意见后不可以更改等。</p>
 
@@ -343,7 +343,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#笔记内容"><span class="toc-number">2.</span> <span class="toc-text">笔记内容</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -469,11 +469,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">-java8 -lambda</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-java8 -lambda</a>
+                <a href="javascript:void(0)" class="js-tag color4">-随笔</a>
               </li>
              
               <li class="article-tag-list-item">
