@@ -6,15 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>java nio初探 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="背景在公司实习已经有一段时间了，刚开始的时候还是比较兴奋的，因为终于可以真正的做项目啦，但是过了段时间又觉得好像没啥太大进步，毕竟给的需求都比较简单，实现起来还是比较轻松，虽然还是花了比较长的时间（只能怪自己基础不是很牢），但是慢慢的也适应了，就觉得没学到啥新东西，还是挺遗憾的，直到最近主管给我安排了个需求，是实现和硬件通信的，然后给我讲这个项目的整体流程，是基于socket通信的东西，当时跟我讲">
+<meta name="keywords" content="nio 网络编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java nio初探">
+<meta property="og:url" content="http://yoursite.com/2018/01/26/java-nio初探/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="背景在公司实习已经有一段时间了，刚开始的时候还是比较兴奋的，因为终于可以真正的做项目啦，但是过了段时间又觉得好像没啥太大进步，毕竟给的需求都比较简单，实现起来还是比较轻松，虽然还是花了比较长的时间（只能怪自己基础不是很牢），但是慢慢的也适应了，就觉得没学到啥新东西，还是挺遗憾的，直到最近主管给我安排了个需求，是实现和硬件通信的，然后给我讲这个项目的整体流程，是基于socket通信的东西，当时跟我讲">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/01/26/java-nio初探/blogImg/nioImag/nio.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/01/26/java-nio初探/blogImg/nioImag/002.png">
+<meta property="og:image" content="http://yoursite.com/2018/01/26/java-nio初探/blogImg/nioImag/001.png">
+<meta property="og:updated_time" content="2018-02-04T12:39:52.339Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="java nio初探">
+<meta name="twitter:description" content="背景在公司实习已经有一段时间了，刚开始的时候还是比较兴奋的，因为终于可以真正的做项目啦，但是过了段时间又觉得好像没啥太大进步，毕竟给的需求都比较简单，实现起来还是比较轻松，虽然还是花了比较长的时间（只能怪自己基础不是很牢），但是慢慢的也适应了，就觉得没学到啥新东西，还是挺遗憾的，直到最近主管给我安排了个需求，是实现和硬件通信的，然后给我讲这个项目的整体流程，是基于socket通信的东西，当时跟我讲">
+<meta name="twitter:image" content="http://yoursite.com/2018/01/26/java-nio初探/blogImg/nioImag/nio.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,57 +159,363 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-java-nio初探" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/10/xw/" class="archive-article-date">
-  	<time datetime="2018-05-10T03:23:05.070Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/26/java-nio初探/" class="archive-article-date">
-  	<time datetime="2018-01-26T13:22:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/26/java-nio初探/">java nio初探</a>
+    <h1 class="article-title" itemprop="name">
+      java nio初探
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/01/26/java-nio初探/" class="archive-article-date">
+  	<time datetime="2018-01-26T13:22:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-26</time>
+</a>
+        
+      </header>
+    
+    <!-- 目录内容 -->
+        
+            <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+            <span class="btn-bg"></span>
+            <span class="btn-text">文章导航</span>
+            </p>
+            <div id="toc-article" class="toc-article">
+                <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+                <strong class="toc-title">文章目录</strong>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传统的socket通信"><span class="toc-number">2.</span> <span class="toc-text">传统的socket通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NIO带来的解决方案"><span class="toc-number">3.</span> <span class="toc-text">NIO带来的解决方案</span></a></li></ol>
+           </div>
+           <script type="text/javascript">
+            function showToc(){
+                var toc_article = document.getElementById("toc-article");
+                var show_toc_btn = document.getElementById("show-toc-btn");
+                toc_article.setAttribute("style","display:block");
+                show_toc_btn.setAttribute("style","display:none");
+                };
+            function showBtn(){
+                var toc_article = document.getElementById("toc-article");
+                var show_toc_btn = document.getElementById("show-toc-btn");
+                toc_article.setAttribute("style","display:none");
+                show_toc_btn.setAttribute("style","display:block");
+                };
+           </script>
+             
+        <!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在公司实习已经有一段时间了，刚开始的时候还是比较兴奋的，因为终于可以真正的做项目啦，但是过了段时间又觉得好像没啥太大进步，毕竟给的需求都比较简单，实现起来还是比较轻松，虽然还是花了比较长的时间（只能怪自己基础不是很牢），但是慢慢的也适应了，就觉得没学到啥新东西，还是挺遗憾的，直到最近主管给我安排了个需求，是实现和硬件通信的，然后给我讲这个项目的整体流程，是基于socket通信的东西，当时跟我讲了一大堆，客户端发起一个长连接，然后通过通道进行数据传输…讲了一大堆我是一脸懵逼啊，然后就叫我自己先看，不懂再问他。看了一下发现好多类都没见过，然后就去百度，发现是nio包下的，哈哈，激动+1，，然后在往下看看，发现ConcurrentHashMap,哈哈，这不是那个很吊的并发容器么。激动+2，再看看发现线程池，哈哈，激动+3，都是之前没接触过的东西，终于能接触到新知识啦~所以就有了这篇学习笔记，ok,不逼逼了。往下看~~<br> <a id="more"></a></p>
+<h2 id="传统的socket通信"><a href="#传统的socket通信" class="headerlink" title="传统的socket通信"></a>传统的socket通信</h2><p><strong>阻塞和非阻塞</strong><br>阻塞和非阻塞就是当我们的应用程序没有访问数据时数据还没有准备好的时候的一种处理方式。你去银行取钱，人很多你只能排队取钱。一直阻塞在那里等待什么事情都不能做，非阻塞就是你领了一张小票，拿着票排队，排队期间你还可以去做其它的事情而不用一直在排队的队伍里面等待，当到你的时候直接去取钱就可以了。而我们传统的socket通信就是阻塞式的通信方式。<br><strong>传统socket的通信代码</strong>   </p>
+<p>服务端：</p>
+<pre><code>public class SocketServer {
+    public final static int PORT = 8765;
+    public static void main(String[] args) {
+         ServerSocket serverSocket=null;
+         BufferedReader in = null;
+        // 记录连接次数
+        int count = 0;
+        try {
+            serverSocket = new ServerSocket(SocketServer.PORT);
+            // 一直阻塞着，接收客户端的请求
+
+            count++;
+            while (true) {
+                Socket socket = serverSocket.accept();
+                in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                // 对读到的数据进行处理,假设处理数据需要5s
+                Thread.sleep(5000);
+                System.out.println(&quot;客户端第&quot; + count + &quot;连接&quot;);
+                System.out.println(&quot;需要对客户端发来的数据进行处理是：&quot; + in.readLine());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if(in != null){
+                try {
+                    in.close();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+            if(serverSocket != null){
+                try {
+                    serverSocket.close();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+    }
+}  
+</code></pre><p>客户端：    </p>
+<pre><code>public class SocketClient implements Runnable {
+public final static String ADDRESS = &quot;127.0.0.1&quot;;
+public final static int PORT = 8765;
+
+@Override
+public void run() {
+    Socket socket = null;
+    PrintWriter out = null;
+
+    try {
+        socket = new Socket(ADDRESS, PORT);
+        out = new PrintWriter(socket.getOutputStream(), true);
+
+        out.println(&quot;123&quot;);
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        if (out != null) {
+            try {
+                out.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (socket != null) {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+}
+
+public static void main(String[] args) {
+    for (int i = 0; i &lt; 10; i++) {
+        new Thread(new SocketClient()).start();
+        ;
+    }
+}
+</code></pre><p>}</p>
+<p>从上面的代码可以看出当客户端发送数据给服务端的时候，服务端阻塞到客户端连接后进行读取数据，读取数据过程中如果数据还没有准备好（数据在传输过程中会受到网络带宽等影响），就会阻塞，阻塞过程中线程会失去cpu的使用权，假设读取数据后对数据进行操作处理需要一段时间假设5s，那么10个客户端连接进行数据处理将要50s，这在现代大规模的访问量来说是不能接受的，当然数据的处理我们可以采用多线程的方式来处理，即一个连接一个线程，出现阻塞时只是一个线程阻塞而不影响其他线程的工作，但是当大量连接到来时，使用多线程也会影响系统的开销，因为线程的创建和回收会增加系统的开销，同时线程的切换也是需要时间的，当然合理的使用线程池也就能够减少线程的创建带来的开销，但是这仍然没有能够解决读取数据过程中阻塞操作的问题，依然使用的是同步阻塞模型。  </p>
+<h2 id="NIO带来的解决方案"><a href="#NIO带来的解决方案" class="headerlink" title="NIO带来的解决方案"></a>NIO带来的解决方案</h2><p>首先先总体看一下NIO的结构，NIO的工作方式主要是围绕着Selectors（选择器），Channels（支持异步读写的通道），Buffers（用于读写数据的缓冲区）这三个组件为核心所展开的。如下图：  </p>
+<p><img src="blogImg/nioImag/nio.jpg" alt="">    </p>
+<p><strong>Channels</strong><br>传统的io是基于字节流和字符流进行操作的，也就是说是面向流的操作，这意味着进行读写操作的时候，如果数据还没有准备好，例如经过网络传输的数据，由于带宽延迟等各种因素，那么当前的线程只能一直阻塞在那里，不能做其他事情，而且传输的数据是没有被缓存在任何地方的，而NIO则是面向通道和缓存的，数据总是从通道读到缓冲区，或者从缓冲区写到通道。<br>通道（Channels）有点类似传统io中的流（Steam）,但是流是单向的而，通道是双向的。通道主要有一下几种分类：<br>1.FileChannel   (文件io)<br>2.DatagramChannel  （udp网络io）<br>3.SocketChannel    (tcp网络id)<br>4.ServerSocketChannel  (监听tcp连接的网络io)<br>主要介绍一下后面两个SocketChannel和ServerSocketChannel，他们的关系相当于传统io中的Socket和Serversocket，服务端通过获取ServerSocketChannel的实例（open()）然后进行阻塞（accept()）接收客户端的连接，客户端的一个新连接就会创建一个SocketChannel实例，然后就可以对这个通道进行操作。<br><strong>Selectors</strong><br>在了解Selectors之前，我们先简单的了解一下UNIX网络编程，在linux内核中会将所有的外部设备看做一个文件来操作，对一个文件的读写操作会调用内核提供的系统命令，然后返回一个文件描述符。<br>根据UNIX网络编程对IO模型的分类，IO模型可以分为以下5种：<br>1.阻塞IO模型<br>2.非阻塞IO模型<br>3.IO复用模型<br>4.信号驱动模型<br>5.异步IO模型<br>下面简单的介绍下IO复用模型中的多路复用技术，NIO中的Selectors就是一种多路复用技术的实现：<br>多路复用技术就是把多个阻塞的IO复用到一个select上进行阻塞，这样就能实现单个线程能够处理多个客户端的请求操作了。多路复用技术主要用于以下场景：   </p>
+<ul>
+<li>服务端需要同时处理多个处于监听状态或者多个连接的套接字  </li>
+<li>服务端需要同时处理多种网络协议的套接字</li>
+</ul>
+<p>目前支持IO多路复用技术的系统调用有select,pselect,poll.epool,在linux中主要选择的是epool来做轮询操作，NIO中也是基于epool实现的多路复用技术，它有以下有点：<br>1.支持一个进程打开文件描述符不受限制，仅限于操作系统的最大文件句柄数<br>2.IO效率不会随着文件秒速符的数量的增加而线性下降<br>3.使用mmap加速内核与用户空间的消息传递<br>4.epool的API更加简单。<br>以上只是对Linux中的一些知识点进行学习（摘抄于Netty权威指南），以便更好的理解NIO中的多路复用技术。 接下来回到我们的NIO的Selectors。<br>选择器，这是NIO实现非阻塞的关键，它是基于事件驱动的，它会监听每一个注册在选择器上channels的IO事件,比如连接事件，接收事件，读事件和写事件。它就类似一个管家管理着我们的IO事件，不断的询问有没有准备好的IO事件有的话就会给对应的channal一把钥匙通知我们我线程去处理，这样就线程就不会一直阻塞在那里等到IO事件准备好才继续工作了，同时也实现可单个线程监听多个channal了。要实现我们的channal交给selector这个管家去管理，必须每个channal都要向selector注册事件。如下图：<br><img src="blogImg/nioImag/002.png" alt=""><br>对于要注册感兴趣的IO事件，主要有以下几种：<br>SelectionKey.OP_CONNECT（连接事件）<br>SelectionKey.OP_ACCEPT（接收事件）<br>SelectionKey.OP_READ （读事件）<br>SelectionKey.OP_WRITE（写事件）<br>这些数据的在我们的程序中正是用上面这四个常量来表示的，当然可以对多个感兴趣的事件进行注册我们可以用“或”  操作符来表示    </p>
+<pre><code>SelectionKey.OP_READ | SelectionKey.OP_WRITE  
+</code></pre><p>注册事件后我们需要对selector进行轮询操作，当你的注册的事件已经准备就绪，那么regitor会返回一个selectionkey对象，这个对象包含了一些你感兴趣的属性：   </p>
+<ul>
+<li>interest集合    —主要保存的是你感兴趣的事件集合。    </li>
+<li>ready集合  —主要保存的是已经准备好的事件结合</li>
+<li>Channel —返回SelectionKey对应的channel</li>
+<li>Selector —返回SelectionKey对应的selector</li>
+<li>附加的对象 —在selectionkey中添加一些附加信息使其更加方便的识别channel,比如可以附加和channal一起使用的buffer</li>
+</ul>
+<p><strong>Buffers</strong><br>缓冲区，缓冲区是用来和通道交互的，通道是数据传输的途径，而缓冲区就是放入这些数据的一个对象。即我们要接收数据时总是从通道中获取数据放入已有的缓冲区，要发送数据时总是从已有的缓冲区写入通道中的，我们实际处理数据的来源正是缓冲区的数据。而缓冲区又有以下分类：<br>ByteBuffer<br>MappedByteBuffer<br>CharBuffer<br>DoubleBuffer<br>FloatBuffer<br>IntBuffer<br>LongBuffer<br>ShortBuffer<br>从以上可以看出，java中的八大基本数据类型除了boolean类型的都已经有与之相对应的缓冲类型。<br>再来看看buffer中的一些属性的定义：<br>capacity：容量，固定大小值，满了要清理或者读取才能继续写数据<br>position：写模式时表示当前位置，最大值capacity – 1，切换到读模式时会被重置为0<br>limit：读写数据的限制。写模式下等于capacity,读模式下等于写模式的position的值<br>一些基本的用法：<br>1.Buffer的分配：ByteBuffer.allocate（capacity）<br>2.写数据到缓冲区：  </p>
+<ul>
+<li>从Channel写到Buffer：Channel.read(buf)，返回的int值表示读了多少字节进Buffer里。如果返回的是-1，表示已经读到了流的末尾（连接关闭了） </li>
+<li>通过Buffer的put()方法写到Buffer:buf.put()  </li>
+</ul>
+<p>3.flip()要读取数据时需要调用此方法将写模式切换到读模式,调用此方法后注意position和limit值得改变<br>4.读数据，读模式下就可以读取之前写入的数据：  </p>
+<ul>
+<li>从Buffer读取数据到Channel:Channel.write(buf)，需要重复调用write(buf.hasRemaining())直到Buffer没有要写的字节为止  </li>
+<li>使用get()方法从Buffer中读取数据:buf.get()  </li>
+</ul>
+<p>5.清除缓冲区（为写作准备）：  </p>
+<ul>
+<li>crear()清空整个缓冲区,position置0，未读的数据将会被遗忘  </li>
+<li>compact()清除已经读过的数据，将所有未读的数据拷贝到Buffer起始处，position为最后一个未读数据的后面<br><img src="blogImg/nioImag/001.png" alt=""> </li>
+</ul>
+<p><strong>实践Demo</strong><br>上面已经把Channels，Selectors，Buffers简单的了解了一遍，所以接下来就要通过一个客户端和服务端通信的Demo去加深理解NIO的使用<br><strong>服务端：</strong></p>
+<pre><code>public class NioServer implements Runnable {
+// 记录连接数
+private static int count = 0;
+// 选择器，用于管理向其注册的通道
+private Selector selector;
+// 用于写数据的缓冲区
+private ByteBuffer writeBuffer = ByteBuffer.allocate(1024);
+
+public NioServer(int port) {
+    try {
+        // 打开选择器，
+        this.selector = Selector.open();
+        // 打开服务端通道
+        ServerSocketChannel server = ServerSocketChannel.open();
+        // 设置服务端通道为非阻塞
+        server.configureBlocking(false);
+        // 绑定端口地址
+        server.bind(new InetSocketAddress(port));
+        // 把服务端通道注册到选择器上,并注册接受事件
+        server.register(selector, SelectionKey.OP_ACCEPT);
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+@Override
+public void run() {
+    // 轮询操作
+    while (true) {
+        try {
+            // 不断的监听就绪事件，返回值为就绪事件个数
+            int keys = selector.select();
+            if (keys &gt; 0) {
+                // 遍历所有准备好的事件的channal对应的selectionkey
+                Iterator&lt;SelectionKey&gt; selectionkeys = selector.selectedKeys().iterator();
+                while (selectionkeys.hasNext()) {
+                    // 获取其中一个selectionkey
+                    SelectionKey key = selectionkeys.next();
+                    if (key.isValid()) {
+                        // 如果selectionkey是可接受状态
+                        if (key.isAcceptable()) {
+                            // 处理可接收事件
+                            handleAccept(key);
+                        }
+                        // 如果selectionkey是可读事件
+                        if (key.isReadable()) {
+                            handleRead(key);
+                        }
+                        // 如果是可写事件
+                        if (key.isWritable()) {
+                            handWrite(key);
+                        }
+                    }
+                    // 一定要记得从容器中移除，要不然会造成空轮询操作
+                    selectionkeys.remove();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+private void handWrite(SelectionKey key) {
+    // 由于写事件比较特殊，这里暂时不实现，下篇文章在继续实现
+}
+
+private void handleRead(SelectionKey key) {
+    try {
+        // 用于读取数据的缓冲区
+        ByteBuffer readBuffer = ByteBuffer.allocate(1024);
+        // 获取之前注册的读通道对象
+        SocketChannel socketChannel = (SocketChannel) key.channel();
+        // 读取数据
+        int count = socketChannel.read(readBuffer);
+        // 如果没有数据
+        if (count == -1) {
+            key.channel().close();
+            key.cancel();
+            count--;
+            return;
+        }
+        // 如果有数据，那就进行读取，要把写模式切换为读模式
+        readBuffer.flip();
+        // 根据缓冲区的数据长度创建相应大小的byte数组，接收缓冲区的数据
+        byte[] bytes = new byte[readBuffer.remaining()];
+        // 接收缓冲区数据
+        readBuffer.get(bytes);
+        String data = new String(bytes).trim();
+        System.out.println(&quot;客户端发送的数据为 : &quot; + data);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+private void handleAccept(SelectionKey key) {
+    try {
+        // 获取服务端的通道
+        ServerSocketChannel server = (ServerSocketChannel) key.channel();
+        // 获取到一个客户端连接的socketChannel
+        SocketChannel socketChannel = server.accept();
+        // 设置为非阻塞
+        socketChannel.configureBlocking(false);
+        // 把客户端的通道注册到选择器上，并且注册读事件
+        socketChannel.register(selector, SelectionKey.OP_READ);
+        count++;
+        System.out.println(&quot;当前有&quot; + count + &quot;个客户端连接&quot;);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+public static void main(String[] args) {
+    new Thread(new NioServer(9090)).start();
+    ;
+}
+}
+</code></pre><p><strong>客户端：</strong>  </p>
+<pre><code>public class NioClient{
+public static void main(String[] args) {
+    // 创建连接的地址
+    InetSocketAddress address = new InetSocketAddress(&quot;127.0.0.1&quot;, 9090);
+    // 声明连接通道
+    SocketChannel sc = null;
+    // 建立缓冲区
+    ByteBuffer buf = ByteBuffer.allocate(1024);
+    try {
+        // 打开通道
+        sc = SocketChannel.open();
+        // 进行连接
+        sc.connect(address);
+        while (true) {
+            // 定义一个字节数组，然后使用系统录入功能：
+            byte[] bytes = new byte[1024];
+            System.in.read(bytes);
+            // 把数据放到缓冲区中
+            buf.put(bytes);
+            // 对缓冲区进行复位
+            buf.flip();
+            // 写出数据
+            sc.write(buf);
+            // 清空缓冲区数据
+            buf.clear();
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    } finally {
+        if (sc != null) {
+            try {
+                sc.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+}
+
+}  
+</code></pre><p>以上就是对NIO的简单入门，对于java NIO来说其API还是比较复杂的，想要写好可靠的NIO程序，还是需要不断的学习。有空在写一下NIO编程中存在的一些问题。<br>参考：<br>书籍：  《netty权威指南》<br>文章：  <a href="http://www.iteye.com/magazines/132-Java-NIO" target="_blank" rel="noopener">Java NIO 系列教程 </a> </p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -212,105 +527,128 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/01/26/java-nio初探/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
+<nav id="article-nav">
+  
+    <a href="/2018/05/10/xw/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/12/java8新特性/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java8新特性之Lambda表达式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/12/java8新特性/" class="archive-article-date">
-  	<time datetime="2017-12-12T13:59:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-12</time>
-</a>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传统的socket通信"><span class="toc-number">2.</span> <span class="toc-text">传统的socket通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NIO带来的解决方案"><span class="toc-number">3.</span> <span class="toc-text">NIO带来的解决方案</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-    	 
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/12/java8新特性/">java8新特性之Lambda表达式</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-java8 -lambda</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/09/shixi/" class="archive-article-date">
-  	<time datetime="2017-12-09T01:45:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/09/shixi/">关于实习的</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">-随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -333,8 +671,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

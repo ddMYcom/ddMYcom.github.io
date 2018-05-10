@@ -6,15 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018/4 | Hexo</title>
+  <title>java8新特性之Lambda表达式 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2018/04/index.html">
+  <meta name="description" content="前言前阵子java9已经出来了，但是请注意这里不是讲java9的新特性，因为java8的新特性笔者之前都没接触过~,毕竟自己做的项目没用上，所以就想着还是等工作的时候遇到了在进行学习吧，没想到实习的公司用到了很多java8的新特性（实习第二天，还是一直处于打酱油的状态(⊙o⊙)…），所以就开始了我的java8新特性的学习之路~~ Lambda表达式简介Lambda表达式是Java8里的一个重要特性">
+<meta name="keywords" content="-java8 -lambda">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java8新特性之Lambda表达式">
+<meta property="og:url" content="http://yoursite.com/2017/12/12/java8新特性/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言前阵子java9已经出来了，但是请注意这里不是讲java9的新特性，因为java8的新特性笔者之前都没接触过~,毕竟自己做的项目没用上，所以就想着还是等工作的时候遇到了在进行学习吧，没想到实习的公司用到了很多java8的新特性（实习第二天，还是一直处于打酱油的状态(⊙o⊙)…），所以就开始了我的java8新特性的学习之路~~ Lambda表达式简介Lambda表达式是Java8里的一个重要特性">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2017/12/12/java8新特性/blogImg/001.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/12/java8新特性/blogImg/java8Imag/002.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/12/java8新特性/blogImg/java8Imag/003.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/12/java8新特性/blogImg/java8Imag/004.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/12/java8新特性/blogImg/java8Imag/005.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/12/java8新特性/blogImg/java8Imag/006.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/12/java8新特性/blogImg/java8Imag/007.png">
+<meta property="og:updated_time" content="2018-02-04T12:42:49.727Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="java8新特性之Lambda表达式">
+<meta name="twitter:description" content="前言前阵子java9已经出来了，但是请注意这里不是讲java9的新特性，因为java8的新特性笔者之前都没接触过~,毕竟自己做的项目没用上，所以就想着还是等工作的时候遇到了在进行学习吧，没想到实习的公司用到了很多java8的新特性（实习第二天，还是一直处于打酱油的状态(⊙o⊙)…），所以就开始了我的java8新特性的学习之路~~ Lambda表达式简介Lambda表达式是Java8里的一个重要特性">
+<meta name="twitter:image" content="http://yoursite.com/2017/12/12/java8新特性/blogImg/001.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -43,7 +56,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/img/touxiang.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">John Doe</a></h1>
@@ -79,11 +92,11 @@
 				
 					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="weibo" target="_blank" href="https://weibo.com/5620719964/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="weibo"><i class="icon-weibo"></i></a>
 		        
 					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/mbian-ji" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 			</div>
 		</nav>
@@ -101,7 +114,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/img/touxiang.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">John Doe</h1>
@@ -120,11 +133,11 @@
 					
 						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="https://weibo.com/5620719964/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="weibo"><i class="icon-weibo"></i></a>
 			        
 						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/mbian-ji" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 				</div>
 			</nav>
@@ -150,49 +163,308 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-java8新特性" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/14/hello-world/" class="archive-article-date">
-  	<time datetime="2018-04-14T02:21:49.512Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-14</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/14/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      java8新特性之Lambda表达式
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2017/12/12/java8新特性/" class="archive-article-date">
+  	<time datetime="2017-12-12T13:59:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-12</time>
+</a>
+        
+      </header>
+    
+    <!-- 目录内容 -->
+        
+            <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+            <span class="btn-bg"></span>
+            <span class="btn-text">文章导航</span>
+            </p>
+            <div id="toc-article" class="toc-article">
+                <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+                <strong class="toc-title">文章目录</strong>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda表达式简介"><span class="toc-number">2.</span> <span class="toc-text">Lambda表达式简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lambda表达式之基础语法"><span class="toc-number">3.</span> <span class="toc-text">lambda表达式之基础语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#匿名内部类的简化"><span class="toc-number">3.0.1.</span> <span class="toc-text">匿名内部类的简化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#集合的遍历forEach"><span class="toc-number">3.0.2.</span> <span class="toc-text">集合的遍历forEach</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lambda表达式之进阶实战"><span class="toc-number">4.</span> <span class="toc-text">lambda表达式之进阶实战</span></a></li></ol>
+           </div>
+           <script type="text/javascript">
+            function showToc(){
+                var toc_article = document.getElementById("toc-article");
+                var show_toc_btn = document.getElementById("show-toc-btn");
+                toc_article.setAttribute("style","display:block");
+                show_toc_btn.setAttribute("style","display:none");
+                };
+            function showBtn(){
+                var toc_article = document.getElementById("toc-article");
+                var show_toc_btn = document.getElementById("show-toc-btn");
+                toc_article.setAttribute("style","display:none");
+                show_toc_btn.setAttribute("style","display:block");
+                };
+           </script>
+             
+        <!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前阵子java9已经出来了，但是请注意这里不是讲java9的新特性，因为java8的新特性笔者之前都没接触过~,毕竟自己做的项目没用上，所以就想着还是等工作的时候遇到了在进行学习吧，没想到实习的公司用到了很多java8的新特性（实习第二天，还是一直处于打酱油的状态(⊙o⊙)…），所以就开始了我的java8新特性的学习之路~~</p>
+<h2 id="Lambda表达式简介"><a href="#Lambda表达式简介" class="headerlink" title="Lambda表达式简介"></a>Lambda表达式简介</h2><p>Lambda表达式是Java8里的一个重要特性，Lambda表达式其实就是提供Java编程中对于函数式编程的支持。Lambda表达式本质上是将一个函数的代码作为一个参数或变量进行传递，这种处理方式有个专门的名字——函数式编程</p>
+<h2 id="lambda表达式之基础语法"><a href="#lambda表达式之基础语法" class="headerlink" title="lambda表达式之基础语法"></a>lambda表达式之基础语法</h2> <a id="more"></a>
+<h4 id="匿名内部类的简化"><a href="#匿名内部类的简化" class="headerlink" title="匿名内部类的简化"></a>匿名内部类的简化</h4><p>以下是java8之前的内部类的写法：<br><img src="blogImg/001.png" alt=""><br>下面是java8中的写法：<br><img src="blogImg/java8Imag/002.png" alt=""><br>输出结果：<br><img src="blogImg/java8Imag/003.png" alt=""><br>首先很明显的看到java8的语法很简洁，省略了很多东西。经过一个小的Demo之后我们大概了解了lambda表达式的书写，我们在来看看他的语法是怎么样的,以下是三种写法：<br>（）-&gt;单条语句<br>（）-&gt;{多条语句}<br>（）-&gt; 表达式<br> 括号可以理解为没有名字的方法，里面是可以带参数的，而-&gt;指向的就是方法体的内容。即（参数1，参数2….）-&gt;{语句1；语句2},例如：（Param param1,Param param2…）-&gt;{param1+param2;system.printIn(“这是java8啊”)}    </p>
+<h4 id="集合的遍历forEach"><a href="#集合的遍历forEach" class="headerlink" title="集合的遍历forEach"></a>集合的遍历forEach</h4><p><strong>java8之前的集合遍历 ：</strong><br><img src="blogImg/java8Imag/004.png" alt=""><br><strong>java8之后的集合遍历 ：</strong><br><img src="blogImg/java8Imag/005.png" alt=""><br><strong>注：</strong>参数e的类型是由编译器推测出来的，也可以把类型加上<br><img src="blogImg/java8Imag/006.png" alt=""> </p>
+<h2 id="lambda表达式之进阶实战"><a href="#lambda表达式之进阶实战" class="headerlink" title="lambda表达式之进阶实战"></a>lambda表达式之进阶实战</h2><p>首先，先来看个需求：<br>实现一个可以对List集合进行过滤的filter函数<br>1.从List<person>集合中筛选出性别为女的人。<br>2.从List<phone>集合中筛选出品牌为华为的手机。<br><strong>在java8以前我们是通过匿名内部类实现的</strong><br>1.根据需求实现一个可以对集合元素的fiiter函数  </phone></person></p>
+<pre><code>public List&lt;T&gt; filter(List&lt;T&gt; list,IFilter iFilter){   
+    List&lt;T&gt; result =new ArrayList&lt;T&gt;();
+    for(T t:list){
+        if(iFilter.filterMethod(t)){
+            result.add(t);
+        }
+    }  
+    return result;
+}
+</code></pre><p>2.定义一个提供过滤的接口，不同的过滤方法只要实现这个接口就可以自定义过滤方法了    </p>
+<pre><code>public interface IFilter &lt;T&gt;{
+    public boolean filterMethod(T t);
+}
+</code></pre><p>3.然后就是实现具体的过滤方法<br>3.1从List集合中筛选出性别为女的人:   </p>
+<pre><code>public static void main(String[] args) {
+    LambdaTest&lt;Person&gt; test = new LambdaTest&lt;Person&gt;();
+    List&lt;Person&gt; list =new ArrayList&lt;Person&gt;();
+    list.add(new Person(&quot;张三&quot;,&quot;男&quot;));
+    list.add(new Person(&quot;李四&quot;,&quot;女&quot;));
+    List&lt;Person&gt; personList= test.filter(list,new IFilter&lt;Person&gt;() {
+        @Override
+        public boolean filterMethod(Person t) {
+            if(&quot;女&quot;.equals(t.getSex())){
+                return true;
+            }
+            return false;
+        }
 
+    });
+    for (Person person : personList) {
+        System.out.println(person.getName());
+    }
+
+}  
+</code></pre><p>输出结果：  </p>
+<pre><code>李四  
+</code></pre><p>3.2从List<phone>集合中筛选出品牌为华为的手机。  </phone></p>
+<pre><code>public static void main(String[] args) {
+
+    LambdaTest&lt;Phone&gt; test = new LambdaTest&lt;Phone&gt;();
+    List&lt;Phone&gt; list =new ArrayList&lt;Phone&gt;();
+    list.add(new Phone(&quot;华为&quot;,&quot;荣耀8&quot;));
+    list.add(new Phone(&quot;华为&quot;,&quot;荣耀9&quot;));
+    list.add(new Phone(&quot;苹果&quot;,&quot;iphone8&quot;));
+    List&lt;Phone&gt; phoneList= test.filter(list,new IFilter&lt;Phone&gt;() {
+        @Override
+        public boolean filterMethod(Phone p) {
+            if(&quot;华为&quot;.equals(p.getBrand())){
+                return true;
+            }
+            return false;
+        }
+
+    });
+    for (Phone phone : phoneList) {
+        System.out.println(phone.getName());
+    }   
+</code></pre><p>结果：  </p>
+<pre><code>荣耀8
+荣耀9    
+</code></pre><p>这是java8之前使用匿名内部类的解决方案，虽然整体上没什么问题，但是代码上不够简洁，让人看了很费劲。所以java8使用了lambda表达式简化我们的开发。<br>java8实现3.1的需求：   </p>
+<pre><code>   public static void main(String[] args) {
+
+   LambdaTest&lt;Person&gt; test = new LambdaTest&lt;Person&gt;();
+   List&lt;Person&gt; list =new ArrayList&lt;Person&gt;();
+   list.add(new Person(&quot;张三&quot;,&quot;男&quot;));
+   list.add(new Person(&quot;李四&quot;,&quot;女&quot;));
+   List&lt;Person&gt; phoneList=test.filter(list, ( person)-&gt; &quot;女&quot;.equals(((Person) person).getSex()));
+   phoneList.forEach(p-&gt;{System.out.println(p.getName());});
+}      
+</code></pre><p>结果：    </p>
+<pre><code>李四
+</code></pre><p>java8实现3.2的需求：  </p>
+<pre><code>public static void main(String[] args) {
+
+    LambdaTest&lt;Phone&gt; test = new LambdaTest&lt;Phone&gt;();
+    List&lt;Phone&gt; list =new ArrayList&lt;Phone&gt;();
+    list.add(new Phone(&quot;华为&quot;,&quot;荣耀8&quot;));
+    list.add(new Phone(&quot;华为&quot;,&quot;荣耀9&quot;));
+    list.add(new Phone(&quot;苹果&quot;,&quot;iphone8&quot;));
+    List&lt;Phone&gt; phoneList=test.filter(list, ( phone)-&gt; &quot;华为&quot;.equals(((Phone) phone).getBrand()));
+    phoneList.forEach(p-&gt;{System.out.println(p.getName());});
+}  
+</code></pre><p>结果：  </p>
+<pre><code>荣耀8
+荣耀9   
+</code></pre><p>哇，是不是看起来舒服很多，即简洁，可读性有好，但是接下来要讲的更重要的一件事情，上面的代码中我们定义了一个可以筛选出所需类型的接口，但是只是定义了筛选的一些共同的部分，具体的针对每个不同的筛选需求，具体的实现是根据筛选的需求规则而定的，这种模式称为策略模式。我们先来看一下策略模式的定义：<br><img src="blogImg/java8Imag/007.png" alt=""><br>即我们根据不同的需求提供了不同的筛选算法，而这些算法会根据使用者不同而随之变化。定义筛选方法的接口我们称之为抽象策略角色，不同的筛选算法，我们称之为具体的策略角色。在这里只是抛砖引玉的讲了一下策略模式，最近在项目中也遇到了有使用策略模式的地方，所以对此也有那么点理解，所谓的策略模式，相当于定义了一个入口，然后根据不同的需求执行不同的策略。使用这种模式能够很好的避免写很多重复的代码，而且能够好的管理不同的算法需求，可以很灵活的添加新的需求，使我们的代码结构更加的健壮。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-java8 -lambda</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/12/12/java8新特性/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/01/26/java-nio初探/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          java nio初探
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/12/09/shixi/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">关于实习的</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda表达式简介"><span class="toc-number">2.</span> <span class="toc-text">Lambda表达式简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lambda表达式之基础语法"><span class="toc-number">3.</span> <span class="toc-text">lambda表达式之基础语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#匿名内部类的简化"><span class="toc-number">3.0.1.</span> <span class="toc-text">匿名内部类的简化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#集合的遍历forEach"><span class="toc-number">3.0.2.</span> <span class="toc-text">集合的遍历forEach</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lambda表达式之进阶实战"><span class="toc-number">4.</span> <span class="toc-text">lambda表达式之进阶实战</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -215,8 +487,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
@@ -283,6 +555,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">nio 网络编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-java8 -lambda</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">-随笔</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
