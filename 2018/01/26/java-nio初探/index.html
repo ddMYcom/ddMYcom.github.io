@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://moyong.top/2018/01/26/java-nio初探/nio.jpg">
 <meta property="og:image" content="http://moyong.top/2018/01/26/java-nio初探/002.png">
 <meta property="og:image" content="http://moyong.top/2018/01/26/java-nio初探/001.png">
-<meta property="og:updated_time" content="2018-05-10T07:06:13.573Z">
+<meta property="og:updated_time" content="2018-05-10T07:13:38.004Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java nio初探">
 <meta name="twitter:description" content="背景在公司实习已经有一段时间了，刚开始的时候还是比较兴奋的，因为终于可以真正的做项目啦，但是过了段时间又觉得好像没啥太大进步，毕竟给的需求都比较简单，实现起来还是比较轻松，虽然还是花了比较长的时间（只能怪自己基础不是很牢），但是慢慢的也适应了，就觉得没学到啥新东西，还是挺遗憾的，直到最近主管给我安排了个需求，是实现和硬件通信的，然后给我讲这个项目的整体流程，是基于socket通信的东西，当时跟我讲">
@@ -190,7 +190,7 @@
             <div id="toc-article" class="toc-article">
                 <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
                 <strong class="toc-title">文章目录</strong>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传统的socket通信"><span class="toc-number">2.</span> <span class="toc-text">传统的socket通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NIO带来的解决方案"><span class="toc-number">3.</span> <span class="toc-text">NIO带来的解决方案</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传统的socket通信"><span class="toc-number">2.</span> <span class="toc-text">传统的socket通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NIO带来的解决方案"><span class="toc-number">3.</span> <span class="toc-text">NIO带来的解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实践Demo"><span class="toc-number">4.</span> <span class="toc-text">实践Demo</span></a></li></ol>
            </div>
            <script type="text/javascript">
             function showToc(){
@@ -329,7 +329,7 @@ public static void main(String[] args) {
 <li>crear()清空整个缓冲区,position置0，未读的数据将会被遗忘  </li>
 <li>compact()清除已经读过的数据，将所有未读的数据拷贝到Buffer起始处，position为最后一个未读数据的后面<br><img src="/2018/01/26/java-nio初探/001.png" alt=""> </li>
 </ul>
-<p><strong>实践Demo</strong><br>上面已经把Channels，Selectors，Buffers简单的了解了一遍，所以接下来就要通过一个客户端和服务端通信的Demo去加深理解NIO的使用<br><strong>服务端：</strong></p>
+<h2 id="实践Demo"><a href="#实践Demo" class="headerlink" title="实践Demo"></a>实践Demo</h2><p>上面已经把Channels，Selectors，Buffers简单的了解了一遍，所以接下来就要通过一个客户端和服务端通信的Demo去加深理解NIO的使用<br><strong>服务端：</strong></p>
 <pre><code>public class NioServer implements Runnable {
 // 记录连接数
 private static int count = 0;
@@ -595,15 +595,6 @@ public static void main(String[] args) {
   
 <nav id="article-nav">
   
-    <a href="/2018/05/10/xw/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
-  
   
     <a href="/2017/12/12/java8新特性/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">java8新特性之Lambda表达式</div>
@@ -633,7 +624,7 @@ public static void main(String[] args) {
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传统的socket通信"><span class="toc-number">2.</span> <span class="toc-text">传统的socket通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NIO带来的解决方案"><span class="toc-number">3.</span> <span class="toc-text">NIO带来的解决方案</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传统的socket通信"><span class="toc-number">2.</span> <span class="toc-text">传统的socket通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NIO带来的解决方案"><span class="toc-number">3.</span> <span class="toc-text">NIO带来的解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实践Demo"><span class="toc-number">4.</span> <span class="toc-text">实践Demo</span></a></li></ol>
                     </div>
                 </span>
             </div>
