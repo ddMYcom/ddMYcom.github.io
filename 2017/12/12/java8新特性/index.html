@@ -5,31 +5,31 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>java8新特性之Lambda表达式 | Hexo</title>
+  <link rel="dns-prefetch" href="http://moyong.top">
+  <title>java8新特性之Lambda表达式 | moyong的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言前阵子java9已经出来了，但是请注意这里不是讲java9的新特性，因为java8的新特性笔者之前都没接触过~,毕竟自己做的项目没用上，所以就想着还是等工作的时候遇到了在进行学习吧，没想到实习的公司用到了很多java8的新特性（实习第二天，还是一直处于打酱油的状态(⊙o⊙)…），所以就开始了我的java8新特性的学习之路~~ Lambda表达式简介Lambda表达式是Java8里的一个重要特性">
 <meta name="keywords" content="-java8 -lambda">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java8新特性之Lambda表达式">
-<meta property="og:url" content="http://yoursite.com/2017/12/12/java8新特性/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="http://moyong.top/2017/12/12/java8新特性/index.html">
+<meta property="og:site_name" content="moyong的博客">
 <meta property="og:description" content="前言前阵子java9已经出来了，但是请注意这里不是讲java9的新特性，因为java8的新特性笔者之前都没接触过~,毕竟自己做的项目没用上，所以就想着还是等工作的时候遇到了在进行学习吧，没想到实习的公司用到了很多java8的新特性（实习第二天，还是一直处于打酱油的状态(⊙o⊙)…），所以就开始了我的java8新特性的学习之路~~ Lambda表达式简介Lambda表达式是Java8里的一个重要特性">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2017/12/12/java8新特性/blogImg/001.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/12/java8新特性/blogImg/java8Imag/002.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/12/java8新特性/blogImg/java8Imag/003.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/12/java8新特性/blogImg/java8Imag/004.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/12/java8新特性/blogImg/java8Imag/005.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/12/java8新特性/blogImg/java8Imag/006.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/12/java8新特性/blogImg/java8Imag/007.png">
+<meta property="og:image" content="http://moyong.top/2017/12/12/java8新特性/blogImg/001.png">
+<meta property="og:image" content="http://moyong.top/2017/12/12/java8新特性/blogImg/java8Imag/002.png">
+<meta property="og:image" content="http://moyong.top/2017/12/12/java8新特性/blogImg/java8Imag/003.png">
+<meta property="og:image" content="http://moyong.top/2017/12/12/java8新特性/blogImg/java8Imag/004.png">
+<meta property="og:image" content="http://moyong.top/2017/12/12/java8新特性/blogImg/java8Imag/005.png">
+<meta property="og:image" content="http://moyong.top/2017/12/12/java8新特性/blogImg/java8Imag/006.png">
+<meta property="og:image" content="http://moyong.top/2017/12/12/java8新特性/blogImg/java8Imag/007.png">
 <meta property="og:updated_time" content="2018-02-04T12:42:49.727Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java8新特性之Lambda表达式">
 <meta name="twitter:description" content="前言前阵子java9已经出来了，但是请注意这里不是讲java9的新特性，因为java8的新特性笔者之前都没接触过~,毕竟自己做的项目没用上，所以就想着还是等工作的时候遇到了在进行学习吧，没想到实习的公司用到了很多java8的新特性（实习第二天，还是一直处于打酱油的状态(⊙o⊙)…），所以就开始了我的java8新特性的学习之路~~ Lambda表达式简介Lambda表达式是Java8里的一个重要特性">
-<meta name="twitter:image" content="http://yoursite.com/2017/12/12/java8新特性/blogImg/001.png">
+<meta name="twitter:image" content="http://moyong.top/2017/12/12/java8新特性/blogImg/001.png">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="moyong的博客" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -59,8 +59,10 @@
 			<img src="/img/touxiang.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">John Doe</a></h1>
+		  <h1 class="header-author"><a href="/">moyong</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">欢迎来到moyong的博客</p>
 		
 
 		<nav class="header-menu">
@@ -117,8 +119,10 @@
 				<img src="/img/touxiang.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">John Doe</h1>
+			  <h1 class="header-author js-header-author">moyong</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>欢迎来到moyong的博客<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -393,7 +397,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/12/12/java8新特性/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://moyong.top/2017/12/12/java8新特性/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -474,7 +478,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 John Doe
+    		&copy; 2018 moyong
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
