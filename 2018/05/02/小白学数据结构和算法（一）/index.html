@@ -16,7 +16,8 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://moyong.top/2018/05/02/小白学数据结构和算法（一）/sf1.png">
 <meta property="og:image" content="http://moyong.top/2018/05/02/小白学数据结构和算法（一）/gb1.png">
-<meta property="og:updated_time" content="2018-05-11T03:04:57.313Z">
+<meta property="og:image" content="http://moyong.top/2018/05/02/小白学数据结构和算法（一）/kp1.png">
+<meta property="og:updated_time" content="2018-05-11T09:05:28.467Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小白学算法--分治算法">
 <meta name="twitter:image" content="http://moyong.top/2018/05/02/小白学数据结构和算法（一）/sf1.png">
@@ -259,7 +260,56 @@ public static void main(String[] args) {
     mergesort(arr);
     System.out.println(Arrays.toString(arr));
 }
-</code></pre><h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2>
+</code></pre><h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>快速排序的基本思路是将一堆需要排序的数据从中取一个数（经典快排取的是最后一位，随机快排是随机取一个数然后与最后一位数交换位置）来对整个数据进行比较，比选出的数小的放左边，比选出的数大的数放右边，等于选出的数放中间，即划分成三个部分（也可以划分两部分小于等于选出的数的放左边，大于放右边）然后在按此方法对左右两边的数据进行同样的操作，从而达到整个数据为有序状态。快排的基本步骤是<br>1.准备数组的左右指针L,R（数组索引的左右边界下标值）<br>2.准备两个左右边界以外的两个指针，x=L-1,y=R+1 ,<br>3.取数组的最后一位数最为对比数 ，<br>4.比较的过程为，从L指针开始，如果L指针上的数小于对比数，x指针向前移动一位，移动后的数与L指针上的数进行交换位置，L指针再继续往前移动，如果L指针上的数大于对比数，那么Y指针向后移动一步，并且与L指针上的数交换位置，L指针不移动，在继续与对比数进行比较。如果L指针上的数等于对比数，那么不做交换，只需要把L指针往前移动一步。<br>5.把一轮排序过后的等于值的左右边界指针（索引）返回，然后在把小于对比数的左边部分（范围为：L到等于值左索引-1），大于对比数的右边部分（范围为：等于值右索引+1到R）继续重复上述过程<br>以下是快排实现过程图：<br><img src="/2018/05/02/小白学数据结构和算法（一）/kp1.png" alt=""><br>具体代码实现过程如下所示：  </p>
+<pre><code>public class QuickSort {
+public static void quickSort(int[] arr){
+    if (arr == null || arr.length &lt; 2) {
+        return;
+    }
+    quickSort(arr, 0, arr.length - 1);
+}
+public static void quickSort(int[] arr, int l, int r){
+    if(l&lt;r){//递归的条件是左边索引小于右边索引，如果是等于了就说明只剩一个数了
+        //不加这句话就是直接使用数组的最后一个数作为比较数，即经典快排，加上后就是随机快排
+        swap(arr, l + (int) (Math.random() * (r - l + 1)), r);    
+        int[] p = partition(arr, l, r);//得到一个中间部分的等于值得左右边界索引值
+        quickSort(arr, l, p[0] - 1);//左边部分继续递归操作
+        quickSort(arr, p[1] + 1, r);//右边继续递归操作
+    }
+}
+
+//与对比数对比的过程
+public static int[] partition(int[] arr, int l, int r) {
+    int x = l - 1;
+    int y = r + 1;
+    int num=arr[r];//对比数
+    while (l &lt; y) {
+        if (arr[l] &lt; num) {
+            swap(arr, ++x, l++);
+        } else if (arr[l] &gt; num) {
+            swap(arr, --y, l);
+        } else {
+            l++;
+        }
+    }
+    return new int[] { x + 1, y - 1 };
+}
+
+
+//交互数组的两个数的位置
+public static void swap(int[] arr, int i, int j) {
+    int tmp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = tmp;
+}
+
+public static void main(String[] args) {
+    int [] arr={3,2,6,4,5,4};
+    quickSort(arr);
+    System.out.println(Arrays.toString(arr));
+}
+}
+</code></pre>
       
 
       
