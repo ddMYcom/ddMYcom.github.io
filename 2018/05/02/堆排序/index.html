@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://moyong.top">
-  <title>Archives: 2018 | moyong的博客</title>
+  <title>堆排序 | moyong的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是一个程序员的网站。。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="moyong的博客">
-<meta property="og:url" content="http://moyong.top/archives/2018/index.html">
+  <meta name="keywords" content="-算法 -堆">
+<meta property="og:type" content="article">
+<meta property="og:title" content="堆排序">
+<meta property="og:url" content="http://moyong.top/2018/05/02/堆排序/index.html">
 <meta property="og:site_name" content="moyong的博客">
-<meta property="og:description" content="这是一个程序员的网站。。">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://moyong.top/2018/05/02/堆排序/duibg.png">
+<meta property="og:image" content="http://moyong.top/2018/05/02/堆排序/dui.png">
+<meta property="og:updated_time" content="2018-05-12T06:40:10.926Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="moyong的博客">
-<meta name="twitter:description" content="这是一个程序员的网站。。">
+<meta name="twitter:title" content="堆排序">
+<meta name="twitter:image" content="http://moyong.top/2018/05/02/堆排序/duibg.png">
   
     <link rel="alternative" href="/atom.xml" title="moyong的博客" type="application/atom+xml">
   
@@ -157,36 +159,149 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-堆排序" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/02/堆排序/" class="archive-article-date">
-  	<time datetime="2018-05-02T13:59:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-02</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/02/堆排序/">堆排序</a>
+    <h1 class="article-title" itemprop="name">
+      堆排序
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/05/02/堆排序/" class="archive-article-date">
+  	<time datetime="2018-05-02T13:59:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-02</time>
+</a>
+        
+      </header>
+    
+    <!-- 目录内容 -->
+        
+            <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+            <span class="btn-bg"></span>
+            <span class="btn-text">文章导航</span>
+            </p>
+            <div id="toc-article" class="toc-article">
+                <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+                <strong class="toc-title">文章目录</strong>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆排序"><span class="toc-number">2.</span> <span class="toc-text">堆排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">3.</span> <span class="toc-text">小结</span></a></li></ol>
+           </div>
+           <script type="text/javascript">
+            function showToc(){
+                var toc_article = document.getElementById("toc-article");
+                var show_toc_btn = document.getElementById("show-toc-btn");
+                toc_article.setAttribute("style","display:block");
+                show_toc_btn.setAttribute("style","display:none");
+                };
+            function showBtn(){
+                var toc_article = document.getElementById("toc-article");
+                var show_toc_btn = document.getElementById("show-toc-btn");
+                toc_article.setAttribute("style","display:none");
+                show_toc_btn.setAttribute("style","display:block");
+                };
+           </script>
+             
+        <!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/2018/05/02/堆排序/duibg.png" alt=""><br> <a id="more"></a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>堆是一种很重要的数据结构，堆结构其实是颗完全二叉树。我们所说的优先级队列其实也就是堆结构，所以说堆结构在在很多地方都扮演着很重要的角色</p>
+<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><p>堆是一种完全二叉树的结构，是一种非常重要的数据结构。完全二叉树，完全二叉树主要有两种类型，一种是满二叉树，即除了最后一层外所有的叶子节点都是满的，每个父节点都有左右两个子节点。还有一种情况是，最后一颗二叉树除了最后一层以外节点数都达到最大个数，最后一层的所有节点都连续集中在最左边。堆又可以分为大根堆和小根堆，大根堆是每个节点的值大于左右子节点的值，小根堆是每个子节点的值小于左右子节点的值。 大根堆的根节点一定是整棵树的最大值，小根堆的根节点一定是整颗树的最小值，所以堆排序的主要思路是构造大根堆后把根节点和数组最后一个数交换位置，然后除去数组最后一个数在继续构建大根堆，此时根节点就是当前构造大根堆中的最大值（同时也是整个数组的第二大值），然后把根节点和当前构造大根堆的数组的最后一只数进行交换。重复上诉操作指导只剩下根节点即可得到最后的排序结果<br>堆排序的主要步骤为：<br>1.将数组根据公式构造出一个完全二叉树<br>2.将完全二叉树转换成大根堆（升序构建大根堆，降序构建小根堆）<br>3.将大根堆的根节点和当前构造大根堆的数组的最后一个数交换位置<br>4.除去交换后的数组的最后一个数继续构造大根堆重复3步骤<br>5.直到只剩根节点，即可得到有序数组<br>以下及时堆排序的过程：<br><img src="/2018/05/02/堆排序/dui.png" alt=""><br>堆排序代码实现如下：  </p>
+<pre><code>public class HeapSort {
+public static void heapSort(int[] arr) {
+    if (arr == null || arr.length &lt; 2) {
+        return;
+    }
+    for (int i = 0; i &lt; arr.length; i++) {
+        heapInsert(arr, i);
+    }
+    int size = arr.length;
+    //得到大根堆后和最后一个数交换
+    swap(arr, 0, --size);
+    while (size &gt; 0) {//size是每次交换完位置后除去最后一个数后所剩下的数组长度
+        heapify(arr, 0, size);
+        swap(arr, 0, --size);
+    }
+}
+//构建大根堆
+public static void heapInsert(int[] arr, int index) {
+    while (arr[index] &gt; arr[(index - 1) / 2]) {
+        swap(arr, index, (index - 1) / 2);
+        index = (index - 1) / 2;
+    }
+}
+
+public static void swap(int[] arr, int i, int j) {
+    int tmp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = tmp;
+}
+
+public static void heapify(int[] arr, int index, int size) {
+    int left = index * 2 + 1;
+    int right=index*2+2;
+    while (left &lt; size) {//保证左子节点位置数组不越界，即保证一定存在左子节点才能操作
+        //首先要保证右节点存在，才和左节点的值进行比较，左右节点选出最大值和根节点比较
+        int largest = right &lt; size &amp;&amp; arr[right] &gt; arr[left] ? right : left;
+        largest = arr[largest] &gt; arr[index] ? largest : index;
+        //如果交换后的根节点依然比左右节点大则不用进行交换操作
+        if (largest == index) {
+            break;
+        }
+        swap(arr, largest, index);
+        index = largest;
+        left = index * 2 + 1;
+    }
+}
+
+public static void main(String[] args) {
+    int [] arr={3,2,6,4,5,2,4,1};
+    heapSort(arr);
+    System.out.println(Arrays.toString(arr));
+}
+}  
+</code></pre><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>由于堆排序不需要大量的递归或者而外的需要辅助数组，所以堆排序非常适合数据量很大的场景（百万级），和之前的快速排序和归并排序对比，如果是在百万级的数据的时候，由于快速排序和归并排序都使用递归的算法设计，在数据量很大的情况下就有可能会出现堆栈溢出。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zfb.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -198,133 +313,119 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://moyong.top/2018/05/02/堆排序/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/02/小白学数据结构和算法（一）/" class="archive-article-date">
-  	<time datetime="2018-05-02T13:59:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-02</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/02/小白学数据结构和算法（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">小白学算法--分治算法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/02/小白学数据结构和算法（一）/">小白学算法--分治算法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">-算法 -分治</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆排序"><span class="toc-number">2.</span> <span class="toc-text">堆排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">3.</span> <span class="toc-text">小结</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/18/实习笔记/" class="archive-article-date">
-  	<time datetime="2018-04-18T13:59:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-18</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/18/实习笔记/">实习时记的一些笔记</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">-随笔 -笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/26/java-nio初探/" class="archive-article-date">
-  	<time datetime="2018-01-26T13:22:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/26/java-nio初探/">java nio初探</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">nio 网络编程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -357,8 +458,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
