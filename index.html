@@ -475,6 +475,182 @@
 
 
   
+    <article id="post-java8--StreamAPI" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/12/java8--StreamAPI/">java8--StreamAPI</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/12/java8--StreamAPI/" class="archive-article-date">
+  	<time datetime="2018-01-12T15:19:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-12</time>
+</a>
+        
+      </header>
+    
+    <!-- 目录内容 -->
+             
+        <!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>java8的新特性中引入了StreamAPI，是用来方便我们操作集合的。Stream是一个流的概念，我们只需要对流下达命令就可以对数据进行操作，有点类似于sql语句，我们只需要写好sql语句就能直接怼数据库的数据进行操作，即声明式的方式对数据进行处理，下面试简单的练习。</p>
+<h2 id="StreamAPI的操作"><a href="#StreamAPI的操作" class="headerlink" title="StreamAPI的操作"></a>StreamAPI的操作</h2><h3 id="获取steam"><a href="#获取steam" class="headerlink" title="获取steam"></a>获取steam</h3><pre><code>List&lt;Phone&gt; list=new ArrayList&lt;&gt;();
+    list.add(new Phone(&quot;华为&quot;,&quot;荣耀8&quot;));
+    list.add(new Phone(&quot;华为&quot;,&quot;荣耀9&quot;));
+    list.add(new Phone(&quot;苹果&quot;,&quot;iphone8&quot;));
+    Stream&lt;Phone&gt; stream = list.stream();
+</code></pre><h3 id="集合的筛选"><a href="#集合的筛选" class="headerlink" title="集合的筛选"></a>集合的筛选</h3><p>filter函数里面接收的是一个lambda表达式，如筛选出手机品牌为华为的手机：  </p>
+<pre><code>list.forEach(e-&gt;{System.out.println(&quot;过滤前：&quot;+e.getBrand());});
+list=list.stream().filter(p-&gt;&quot;华为&quot;.equals(p.getBrand())).collect(Collectors.toList());
+list.forEach(e-&gt;{System.out.println(&quot;过滤后：&quot;+e.getBrand());});  
+</code></pre><p>###去重，截取，跳过<br>去重  </p>
+<pre><code>List&lt;String&gt; lists=new ArrayList&lt;&gt;();
+    lists.add(&quot;h&quot;);
+    lists.add(&quot;h&quot;);
+    lists.add(&quot;2&quot;);
+    lists = lists.stream().distinct().collect(Collectors.toList());
+    lists.forEach(p-&gt;{System.out.println(&quot;去重后：&quot;+p);});  
+</code></pre><p>截取</p>
+<pre><code>List&lt;String&gt; lists=new ArrayList&lt;&gt;();
+    lists.add(&quot;h&quot;);
+    lists.add(&quot;h&quot;);
+    lists.add(&quot;2&quot;);
+    lists = lists.stream().limit(2).collect(Collectors.toList());
+    lists.forEach(p-&gt;{System.out.println(&quot;截取后：&quot;+p);});  
+</code></pre><p>跳过  </p>
+<pre><code>List&lt;String&gt; lists=new ArrayList&lt;&gt;();
+    lists.add(&quot;h&quot;);
+    lists.add(&quot;h&quot;);
+    lists.add(&quot;2&quot;);
+    lists = lists.stream().skip(2).collect(Collectors.toList());
+    lists.forEach(p-&gt;{System.out.println(&quot;跳过前两个后：&quot;+p);});  
+</code></pre><h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><p>映射在开发中用得还是比较频繁的。它是将一个list集合内的每一个元素类型根据需求映射成另一种类型的集合，map里面接收一个lamada表达式。例如列出所有手机的名称（即把一个phone类型的集合转变为String类型）：</p>
+<pre><code>List&lt;Phone&gt; list=new ArrayList&lt;&gt;();
+    list.add(new Phone(&quot;华为&quot;,&quot;荣耀8&quot;));
+    list.add(new Phone(&quot;华为&quot;,&quot;荣耀9&quot;));
+    list.add(new Phone(&quot;苹果&quot;,&quot;iphone8&quot;));
+    Stream&lt;Phone&gt; stream = list.stream();
+    List&lt;String&gt; phoneNames= stream.map(p-&gt;p.getName()).collect(Collectors.toList());
+    phoneNames.forEach(n-&gt;{System.out.println(n);});  
+</code></pre><h3 id="归约"><a href="#归约" class="headerlink" title="归约"></a>归约</h3><p>归约是指将集合的所有元素经过指定的运算，得到一个元素进行输出。如求最值，平均值等。reduce函数接收两个参数：一个初始值，一个lambda表达式。例如求手机的价格总和：  </p>
+<pre><code>List&lt;Phone&gt; list=new ArrayList&lt;&gt;();
+list.add(new Phone(&quot;华为&quot;,&quot;荣耀8&quot;,1688));
+list.add(new Phone(&quot;华为&quot;,&quot;荣耀9&quot;,1999));
+list.add(new Phone(&quot;苹果&quot;,&quot;iphone8&quot;,5200));
+Stream&lt;Phone&gt; stream = list.stream();
+List&lt;Integer&gt; prices = stream.map(p-&gt;p.getPrice()).collect(Collectors.toList());
+int total=prices.stream().reduce(0, (p1,p2)-&gt;p1+p2);
+System.out.println(total);   
+</code></pre><p>或者reduce函数接收三个参数<br>第一个参数是初始值，第二个参数是要进行规约操作的字段，第三个参数接收一个lambda表达式进行计算</p>
+<pre><code>Integer total = stream.collect(Collectors.reducing(0,Phone::getPrice,(p1,p2)-&gt;p1+p2)); 
+</code></pre><h3 id="数值计算"><a href="#数值计算" class="headerlink" title="数值计算"></a>数值计算</h3><p>找出最贵的手机：</p>
+<pre><code>List&lt;Phone&gt; list=new ArrayList&lt;&gt;();
+list.add(new Phone(&quot;华为&quot;,&quot;荣耀8&quot;,1688));
+list.add(new Phone(&quot;华为&quot;,&quot;荣耀9&quot;,1999));
+list.add(new Phone(&quot;苹果&quot;,&quot;iphone8&quot;,5200));
+Stream&lt;Phone&gt; stream = list.stream();
+//三种数值流IntStream、DoubleStream、LongStream
+IntStream intStream = stream.mapToInt(p-&gt;p.getPrice());//转换为数值流
+OptionalInt maxPrice = intStream.max();
+System.out.println(maxPrice.getAsInt());      
+</code></pre><h3 id="收集器的使用"><a href="#收集器的使用" class="headerlink" title="收集器的使用"></a>收集器的使用</h3><p>收集器用来对集合流操作后重新整理的后不同形式的展示。<br>求最大值：  </p>
+<pre><code>List&lt;Phone&gt; list=new ArrayList&lt;&gt;();
+        list.add(new Phone(&quot;华为&quot;,&quot;荣耀8&quot;,1688));
+        list.add(new Phone(&quot;华为&quot;,&quot;荣耀9&quot;,1999));
+        list.add(new Phone(&quot;苹果&quot;,&quot;iphone8&quot;,5200));
+        Stream&lt;Phone&gt; stream = list.stream();
+        Optional&lt;Phone&gt; maxPrice = stream.collect(Collectors.maxBy(Comparator.comparingInt(p-&gt;p.getPrice())));
+        System.out.println(maxPrice.get().getPrice());  
+</code></pre><p>求平均值：</p>
+<pre><code>List&lt;Phone&gt; list=new ArrayList&lt;&gt;();
+        list.add(new Phone(&quot;华为&quot;,&quot;荣耀8&quot;,1688));
+        list.add(new Phone(&quot;华为&quot;,&quot;荣耀9&quot;,1999));
+        list.add(new Phone(&quot;苹果&quot;,&quot;iphone8&quot;,5200));
+        Stream&lt;Phone&gt; stream = list.stream();
+        Double avg = stream.collect(Collectors.averagingInt(p-&gt;p.getPrice()));
+        System.out.println(avg);  
+</code></pre><p>求和：  </p>
+<pre><code>List&lt;Phone&gt; list=new ArrayList&lt;&gt;();
+        list.add(new Phone(&quot;华为&quot;,&quot;荣耀8&quot;,1688));
+        list.add(new Phone(&quot;华为&quot;,&quot;荣耀9&quot;,1999));
+        list.add(new Phone(&quot;苹果&quot;,&quot;iphone8&quot;,5200));
+        Stream&lt;Phone&gt; stream = list.stream();
+        Integer sum = stream.collect(Collectors.summingInt(p-&gt;p.getPrice()));
+        System.out.println(sum);   
+</code></pre><h3 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h3><p>分组是对流中的元素按照指定的类别进行划分，和sql语句中的group by语句的作用类似。<br>按照手机品牌进行分组：    </p>
+<pre><code>List&lt;Phone&gt; list=new ArrayList&lt;&gt;();
+        list.add(new Phone(&quot;华为&quot;,&quot;荣耀8&quot;,1688));
+        list.add(new Phone(&quot;华为&quot;,&quot;荣耀9&quot;,1999));
+        list.add(new Phone(&quot;苹果&quot;,&quot;iphone8&quot;,5200));
+        Stream&lt;Phone&gt; stream = list.stream();
+        Map&lt;String, List&lt;Phone&gt;&gt; map = list.stream().collect(Collectors.groupingBy(Phone::getBrand));
+        for (Entry&lt;String, List&lt;Phone&gt;&gt; entry : map.entrySet()) {  
+            System.out.println(&quot;key组名:&quot;+entry.getKey()+&quot;value组内元素：&quot;+entry.getValue());
+        }
+</code></pre><p>对分组进行统计：  </p>
+<pre><code>Map&lt;String, Long&gt; map = list.stream().collect(Collectors.groupingBy(p-&gt;p.getBrand(),Collectors.counting()));
+        for (Entry&lt;String, Long&gt; entry : map.entrySet()) {  
+            System.out.println(&quot;key组名:&quot;+entry.getKey()+&quot;value组内元素个数：&quot;+entry.getValue());
+        }  
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上就是对Steam API中常用的一些练习操作，值得注意的是Stream流只能遍历一次，只要对数据源操作过一遍了，那么这些数据就被消费掉了，如果在对这个流进行操作，那么就会抛出异常。当然我们可以从数据源在获取流继续操作。<br>参考博客：<br><a href="https://blog.csdn.net/u010425776/article/details/52344425" target="_blank" rel="noopener">Java8新特性——StreamAPI(一)</a> </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">-java8 -StreamAPI</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/12/java8--StreamAPI/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-java8新特性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -743,11 +919,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">-java8 -StreamAPI</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">-算法 -堆</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">-随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-java8 -lambda</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -756,10 +940,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">-算法 -分治</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-java8 -lambda</a>
               </li>
             
             <div class="clearfix"></div>

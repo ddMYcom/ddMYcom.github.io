@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://moyong.top">
-  <title>Archives: 2018/1 | moyong的博客</title>
+  <title>java8--StreamAPI | moyong的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是一个程序员的网站。。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="moyong的博客">
-<meta property="og:url" content="http://moyong.top/archives/2018/01/index.html">
+  <meta name="description" content="前言java8的新特性中引入了StreamAPI，是用来方便我们操作集合的。Stream是一个流的概念，我们只需要对流下达命令就可以对数据进行操作，有点类似于sql语句，我们只需要写好sql语句就能直接怼数据库的数据进行操作，即声明式的方式对数据进行处理，下面试简单的练习。 StreamAPI的操作获取steamList&amp;lt;Phone&amp;gt; list=new ArrayList&amp;lt;&amp;gt">
+<meta name="keywords" content="-java8 -StreamAPI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java8--StreamAPI">
+<meta property="og:url" content="http://moyong.top/2018/01/12/java8--StreamAPI/index.html">
 <meta property="og:site_name" content="moyong的博客">
-<meta property="og:description" content="这是一个程序员的网站。。">
+<meta property="og:description" content="前言java8的新特性中引入了StreamAPI，是用来方便我们操作集合的。Stream是一个流的概念，我们只需要对流下达命令就可以对数据进行操作，有点类似于sql语句，我们只需要写好sql语句就能直接怼数据库的数据进行操作，即声明式的方式对数据进行处理，下面试简单的练习。 StreamAPI的操作获取steamList&amp;lt;Phone&amp;gt; list=new ArrayList&amp;lt;&amp;gt">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-24T08:53:23.064Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="moyong的博客">
-<meta name="twitter:description" content="这是一个程序员的网站。。">
+<meta name="twitter:title" content="java8--StreamAPI">
+<meta name="twitter:description" content="前言java8的新特性中引入了StreamAPI，是用来方便我们操作集合的。Stream是一个流的概念，我们只需要对流下达命令就可以对数据进行操作，有点类似于sql语句，我们只需要写好sql语句就能直接怼数据库的数据进行操作，即声明式的方式对数据进行处理，下面试简单的练习。 StreamAPI的操作获取steamList&amp;lt;Phone&amp;gt; list=new ArrayList&amp;lt;&amp;gt">
   
     <link rel="alternative" href="/atom.xml" title="moyong的博客" type="application/atom+xml">
   
@@ -157,74 +159,192 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-java8--StreamAPI" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/26/java-nio初探/" class="archive-article-date">
-  	<time datetime="2018-01-26T13:22:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-26</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/26/java-nio初探/">java nio初探</a>
+    <h1 class="article-title" itemprop="name">
+      java8--StreamAPI
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">nio 网络编程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/12/java8--StreamAPI/" class="archive-article-date">
+        
+        <a href="/2018/01/12/java8--StreamAPI/" class="archive-article-date">
   	<time datetime="2018-01-12T15:19:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-12</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/12/java8--StreamAPI/">java8--StreamAPI</a>
-    </h1>
-  
+        
+      </header>
+    
+    <!-- 目录内容 -->
+        
+            <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+            <span class="btn-bg"></span>
+            <span class="btn-text">文章导航</span>
+            </p>
+            <div id="toc-article" class="toc-article">
+                <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+                <strong class="toc-title">文章目录</strong>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#StreamAPI的操作"><span class="toc-number">2.</span> <span class="toc-text">StreamAPI的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取steam"><span class="toc-number">2.1.</span> <span class="toc-text">获取steam</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#集合的筛选"><span class="toc-number">2.2.</span> <span class="toc-text">集合的筛选</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#映射"><span class="toc-number">2.3.</span> <span class="toc-text">映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#归约"><span class="toc-number">2.4.</span> <span class="toc-text">归约</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数值计算"><span class="toc-number">2.5.</span> <span class="toc-text">数值计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#收集器的使用"><span class="toc-number">2.6.</span> <span class="toc-text">收集器的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分组"><span class="toc-number">2.7.</span> <span class="toc-text">分组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+           </div>
+           <script type="text/javascript">
+            function showToc(){
+                var toc_article = document.getElementById("toc-article");
+                var show_toc_btn = document.getElementById("show-toc-btn");
+                toc_article.setAttribute("style","display:block");
+                show_toc_btn.setAttribute("style","display:none");
+                };
+            function showBtn(){
+                var toc_article = document.getElementById("toc-article");
+                var show_toc_btn = document.getElementById("show-toc-btn");
+                toc_article.setAttribute("style","display:none");
+                show_toc_btn.setAttribute("style","display:block");
+                };
+           </script>
+             
+        <!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>java8的新特性中引入了StreamAPI，是用来方便我们操作集合的。Stream是一个流的概念，我们只需要对流下达命令就可以对数据进行操作，有点类似于sql语句，我们只需要写好sql语句就能直接怼数据库的数据进行操作，即声明式的方式对数据进行处理，下面试简单的练习。</p>
+<h2 id="StreamAPI的操作"><a href="#StreamAPI的操作" class="headerlink" title="StreamAPI的操作"></a>StreamAPI的操作</h2><h3 id="获取steam"><a href="#获取steam" class="headerlink" title="获取steam"></a>获取steam</h3><pre><code>List&lt;Phone&gt; list=new ArrayList&lt;&gt;();
+    list.add(new Phone(&quot;华为&quot;,&quot;荣耀8&quot;));
+    list.add(new Phone(&quot;华为&quot;,&quot;荣耀9&quot;));
+    list.add(new Phone(&quot;苹果&quot;,&quot;iphone8&quot;));
+    Stream&lt;Phone&gt; stream = list.stream();
+</code></pre><h3 id="集合的筛选"><a href="#集合的筛选" class="headerlink" title="集合的筛选"></a>集合的筛选</h3><p>filter函数里面接收的是一个lambda表达式，如筛选出手机品牌为华为的手机：  </p>
+<pre><code>list.forEach(e-&gt;{System.out.println(&quot;过滤前：&quot;+e.getBrand());});
+list=list.stream().filter(p-&gt;&quot;华为&quot;.equals(p.getBrand())).collect(Collectors.toList());
+list.forEach(e-&gt;{System.out.println(&quot;过滤后：&quot;+e.getBrand());});  
+</code></pre><p>###去重，截取，跳过<br>去重  </p>
+<pre><code>List&lt;String&gt; lists=new ArrayList&lt;&gt;();
+    lists.add(&quot;h&quot;);
+    lists.add(&quot;h&quot;);
+    lists.add(&quot;2&quot;);
+    lists = lists.stream().distinct().collect(Collectors.toList());
+    lists.forEach(p-&gt;{System.out.println(&quot;去重后：&quot;+p);});  
+</code></pre><p>截取</p>
+<pre><code>List&lt;String&gt; lists=new ArrayList&lt;&gt;();
+    lists.add(&quot;h&quot;);
+    lists.add(&quot;h&quot;);
+    lists.add(&quot;2&quot;);
+    lists = lists.stream().limit(2).collect(Collectors.toList());
+    lists.forEach(p-&gt;{System.out.println(&quot;截取后：&quot;+p);});  
+</code></pre><p>跳过  </p>
+<pre><code>List&lt;String&gt; lists=new ArrayList&lt;&gt;();
+    lists.add(&quot;h&quot;);
+    lists.add(&quot;h&quot;);
+    lists.add(&quot;2&quot;);
+    lists = lists.stream().skip(2).collect(Collectors.toList());
+    lists.forEach(p-&gt;{System.out.println(&quot;跳过前两个后：&quot;+p);});  
+</code></pre><h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><p>映射在开发中用得还是比较频繁的。它是将一个list集合内的每一个元素类型根据需求映射成另一种类型的集合，map里面接收一个lamada表达式。例如列出所有手机的名称（即把一个phone类型的集合转变为String类型）：</p>
+<pre><code>List&lt;Phone&gt; list=new ArrayList&lt;&gt;();
+    list.add(new Phone(&quot;华为&quot;,&quot;荣耀8&quot;));
+    list.add(new Phone(&quot;华为&quot;,&quot;荣耀9&quot;));
+    list.add(new Phone(&quot;苹果&quot;,&quot;iphone8&quot;));
+    Stream&lt;Phone&gt; stream = list.stream();
+    List&lt;String&gt; phoneNames= stream.map(p-&gt;p.getName()).collect(Collectors.toList());
+    phoneNames.forEach(n-&gt;{System.out.println(n);});  
+</code></pre><h3 id="归约"><a href="#归约" class="headerlink" title="归约"></a>归约</h3><p>归约是指将集合的所有元素经过指定的运算，得到一个元素进行输出。如求最值，平均值等。reduce函数接收两个参数：一个初始值，一个lambda表达式。例如求手机的价格总和：  </p>
+<pre><code>List&lt;Phone&gt; list=new ArrayList&lt;&gt;();
+list.add(new Phone(&quot;华为&quot;,&quot;荣耀8&quot;,1688));
+list.add(new Phone(&quot;华为&quot;,&quot;荣耀9&quot;,1999));
+list.add(new Phone(&quot;苹果&quot;,&quot;iphone8&quot;,5200));
+Stream&lt;Phone&gt; stream = list.stream();
+List&lt;Integer&gt; prices = stream.map(p-&gt;p.getPrice()).collect(Collectors.toList());
+int total=prices.stream().reduce(0, (p1,p2)-&gt;p1+p2);
+System.out.println(total);   
+</code></pre><p>或者reduce函数接收三个参数<br>第一个参数是初始值，第二个参数是要进行规约操作的字段，第三个参数接收一个lambda表达式进行计算</p>
+<pre><code>Integer total = stream.collect(Collectors.reducing(0,Phone::getPrice,(p1,p2)-&gt;p1+p2)); 
+</code></pre><h3 id="数值计算"><a href="#数值计算" class="headerlink" title="数值计算"></a>数值计算</h3><p>找出最贵的手机：</p>
+<pre><code>List&lt;Phone&gt; list=new ArrayList&lt;&gt;();
+list.add(new Phone(&quot;华为&quot;,&quot;荣耀8&quot;,1688));
+list.add(new Phone(&quot;华为&quot;,&quot;荣耀9&quot;,1999));
+list.add(new Phone(&quot;苹果&quot;,&quot;iphone8&quot;,5200));
+Stream&lt;Phone&gt; stream = list.stream();
+//三种数值流IntStream、DoubleStream、LongStream
+IntStream intStream = stream.mapToInt(p-&gt;p.getPrice());//转换为数值流
+OptionalInt maxPrice = intStream.max();
+System.out.println(maxPrice.getAsInt());      
+</code></pre><h3 id="收集器的使用"><a href="#收集器的使用" class="headerlink" title="收集器的使用"></a>收集器的使用</h3><p>收集器用来对集合流操作后重新整理的后不同形式的展示。<br>求最大值：  </p>
+<pre><code>List&lt;Phone&gt; list=new ArrayList&lt;&gt;();
+        list.add(new Phone(&quot;华为&quot;,&quot;荣耀8&quot;,1688));
+        list.add(new Phone(&quot;华为&quot;,&quot;荣耀9&quot;,1999));
+        list.add(new Phone(&quot;苹果&quot;,&quot;iphone8&quot;,5200));
+        Stream&lt;Phone&gt; stream = list.stream();
+        Optional&lt;Phone&gt; maxPrice = stream.collect(Collectors.maxBy(Comparator.comparingInt(p-&gt;p.getPrice())));
+        System.out.println(maxPrice.get().getPrice());  
+</code></pre><p>求平均值：</p>
+<pre><code>List&lt;Phone&gt; list=new ArrayList&lt;&gt;();
+        list.add(new Phone(&quot;华为&quot;,&quot;荣耀8&quot;,1688));
+        list.add(new Phone(&quot;华为&quot;,&quot;荣耀9&quot;,1999));
+        list.add(new Phone(&quot;苹果&quot;,&quot;iphone8&quot;,5200));
+        Stream&lt;Phone&gt; stream = list.stream();
+        Double avg = stream.collect(Collectors.averagingInt(p-&gt;p.getPrice()));
+        System.out.println(avg);  
+</code></pre><p>求和：  </p>
+<pre><code>List&lt;Phone&gt; list=new ArrayList&lt;&gt;();
+        list.add(new Phone(&quot;华为&quot;,&quot;荣耀8&quot;,1688));
+        list.add(new Phone(&quot;华为&quot;,&quot;荣耀9&quot;,1999));
+        list.add(new Phone(&quot;苹果&quot;,&quot;iphone8&quot;,5200));
+        Stream&lt;Phone&gt; stream = list.stream();
+        Integer sum = stream.collect(Collectors.summingInt(p-&gt;p.getPrice()));
+        System.out.println(sum);   
+</code></pre><h3 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h3><p>分组是对流中的元素按照指定的类别进行划分，和sql语句中的group by语句的作用类似。<br>按照手机品牌进行分组：    </p>
+<pre><code>List&lt;Phone&gt; list=new ArrayList&lt;&gt;();
+        list.add(new Phone(&quot;华为&quot;,&quot;荣耀8&quot;,1688));
+        list.add(new Phone(&quot;华为&quot;,&quot;荣耀9&quot;,1999));
+        list.add(new Phone(&quot;苹果&quot;,&quot;iphone8&quot;,5200));
+        Stream&lt;Phone&gt; stream = list.stream();
+        Map&lt;String, List&lt;Phone&gt;&gt; map = list.stream().collect(Collectors.groupingBy(Phone::getBrand));
+        for (Entry&lt;String, List&lt;Phone&gt;&gt; entry : map.entrySet()) {  
+            System.out.println(&quot;key组名:&quot;+entry.getKey()+&quot;value组内元素：&quot;+entry.getValue());
+        }
+</code></pre><p>对分组进行统计：  </p>
+<pre><code>Map&lt;String, Long&gt; map = list.stream().collect(Collectors.groupingBy(p-&gt;p.getBrand(),Collectors.counting()));
+        for (Entry&lt;String, Long&gt; entry : map.entrySet()) {  
+            System.out.println(&quot;key组名:&quot;+entry.getKey()+&quot;value组内元素个数：&quot;+entry.getValue());
+        }  
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上就是对Steam API中常用的一些练习操作，值得注意的是Stream流只能遍历一次，只要对数据源操作过一遍了，那么这些数据就被消费掉了，如果在对这个流进行操作，那么就会抛出异常。当然我们可以从数据源在获取流继续操作。<br>参考博客：<br><a href="https://blog.csdn.net/u010425776/article/details/52344425" target="_blank" rel="noopener">Java8新特性——StreamAPI(一)</a> </p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zfb.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -236,19 +356,128 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://moyong.top/2018/01/12/java8--StreamAPI/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/01/26/java-nio初探/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          java nio初探
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/12/12/java8新特性/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java8新特性之Lambda表达式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#StreamAPI的操作"><span class="toc-number">2.</span> <span class="toc-text">StreamAPI的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取steam"><span class="toc-number">2.1.</span> <span class="toc-text">获取steam</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#集合的筛选"><span class="toc-number">2.2.</span> <span class="toc-text">集合的筛选</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#映射"><span class="toc-number">2.3.</span> <span class="toc-text">映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#归约"><span class="toc-number">2.4.</span> <span class="toc-text">归约</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数值计算"><span class="toc-number">2.5.</span> <span class="toc-text">数值计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#收集器的使用"><span class="toc-number">2.6.</span> <span class="toc-text">收集器的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分组"><span class="toc-number">2.7.</span> <span class="toc-text">分组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -281,8 +510,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
