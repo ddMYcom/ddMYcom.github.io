@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="moyong的博客">
 <meta property="og:description" content="前言java8的新特性中引入了StreamAPI，是用来方便我们操作集合的。Stream是一个流的概念，我们只需要对流下达命令就可以对数据进行操作，有点类似于sql语句，我们只需要写好sql语句就能直接怼数据库的数据进行操作，即声明式的方式对数据进行处理，下面试简单的练习。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-24T09:00:16.877Z">
+<meta property="og:updated_time" content="2018-05-24T09:04:33.739Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java8--StreamAPI">
 <meta name="twitter:description" content="前言java8的新特性中引入了StreamAPI，是用来方便我们操作集合的。Stream是一个流的概念，我们只需要对流下达命令就可以对数据进行操作，有点类似于sql语句，我们只需要写好sql语句就能直接怼数据库的数据进行操作，即声明式的方式对数据进行处理，下面试简单的练习。">
@@ -186,7 +186,7 @@
             <div id="toc-article" class="toc-article">
                 <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
                 <strong class="toc-title">文章目录</strong>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#StreamAPI的操作"><span class="toc-number">2.</span> <span class="toc-text">StreamAPI的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取steam"><span class="toc-number">2.1.</span> <span class="toc-text">获取steam</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#集合的筛选"><span class="toc-number">2.2.</span> <span class="toc-text">集合的筛选</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#映射"><span class="toc-number">2.3.</span> <span class="toc-text">映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#归约"><span class="toc-number">2.4.</span> <span class="toc-text">归约</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数值计算"><span class="toc-number">2.5.</span> <span class="toc-text">数值计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#收集器的使用"><span class="toc-number">2.6.</span> <span class="toc-text">收集器的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分组"><span class="toc-number">2.7.</span> <span class="toc-text">分组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#StreamAPI的操作"><span class="toc-number">2.</span> <span class="toc-text">StreamAPI的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取steam"><span class="toc-number">2.1.</span> <span class="toc-text">获取steam</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#集合的筛选"><span class="toc-number">2.2.</span> <span class="toc-text">集合的筛选</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#去重，截取，跳过"><span class="toc-number">2.3.</span> <span class="toc-text">去重，截取，跳过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#映射"><span class="toc-number">2.4.</span> <span class="toc-text">映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#归约"><span class="toc-number">2.5.</span> <span class="toc-text">归约</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数值计算"><span class="toc-number">2.6.</span> <span class="toc-text">数值计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#收集器的使用"><span class="toc-number">2.7.</span> <span class="toc-text">收集器的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分组"><span class="toc-number">2.8.</span> <span class="toc-text">分组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
            </div>
            <script type="text/javascript">
             function showToc(){
@@ -216,7 +216,7 @@
 <pre><code>list.forEach(e-&gt;{System.out.println(&quot;过滤前：&quot;+e.getBrand());});
 list=list.stream().filter(p-&gt;&quot;华为&quot;.equals(p.getBrand())).collect(Collectors.toList());
 list.forEach(e-&gt;{System.out.println(&quot;过滤后：&quot;+e.getBrand());});  
-</code></pre><p>###去重，截取，跳过<br>去重  </p>
+</code></pre><h3 id="去重，截取，跳过"><a href="#去重，截取，跳过" class="headerlink" title="去重，截取，跳过"></a>去重，截取，跳过</h3><p>去重  </p>
 <pre><code>List&lt;String&gt; lists=new ArrayList&lt;&gt;();
     lists.add(&quot;h&quot;);
     lists.add(&quot;h&quot;);
@@ -458,7 +458,7 @@ System.out.println(maxPrice.getAsInt());
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#StreamAPI的操作"><span class="toc-number">2.</span> <span class="toc-text">StreamAPI的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取steam"><span class="toc-number">2.1.</span> <span class="toc-text">获取steam</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#集合的筛选"><span class="toc-number">2.2.</span> <span class="toc-text">集合的筛选</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#映射"><span class="toc-number">2.3.</span> <span class="toc-text">映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#归约"><span class="toc-number">2.4.</span> <span class="toc-text">归约</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数值计算"><span class="toc-number">2.5.</span> <span class="toc-text">数值计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#收集器的使用"><span class="toc-number">2.6.</span> <span class="toc-text">收集器的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分组"><span class="toc-number">2.7.</span> <span class="toc-text">分组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#StreamAPI的操作"><span class="toc-number">2.</span> <span class="toc-text">StreamAPI的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取steam"><span class="toc-number">2.1.</span> <span class="toc-text">获取steam</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#集合的筛选"><span class="toc-number">2.2.</span> <span class="toc-text">集合的筛选</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#去重，截取，跳过"><span class="toc-number">2.3.</span> <span class="toc-text">去重，截取，跳过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#映射"><span class="toc-number">2.4.</span> <span class="toc-text">映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#归约"><span class="toc-number">2.5.</span> <span class="toc-text">归约</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数值计算"><span class="toc-number">2.6.</span> <span class="toc-text">数值计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#收集器的使用"><span class="toc-number">2.7.</span> <span class="toc-text">收集器的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分组"><span class="toc-number">2.8.</span> <span class="toc-text">分组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -584,15 +584,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-java8 -lambda</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">-随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-算法 -堆</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -604,7 +596,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">-算法 -堆</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">nio 网络编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-java8 -lambda</a>
               </li>
             
             <div class="clearfix"></div>
