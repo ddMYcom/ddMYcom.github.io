@@ -6,18 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://52moyong.top">
-  <title>小白学数据结构--树 | moyong的博客</title>
+  <title>小白学数据结构--二叉树 | moyong的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="-数据结构 -线性表">
+  <meta name="keywords" content="-数据结构 -二叉树">
 <meta property="og:type" content="article">
-<meta property="og:title" content="小白学数据结构--树">
+<meta property="og:title" content="小白学数据结构--二叉树">
 <meta property="og:url" content="http://52moyong.top/2018/05/11/小白学数据结构（二 )/index.html">
 <meta property="og:site_name" content="moyong的博客">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://52moyong.top/2018/05/11/小白学数据结构（二%20)/shu.png">
-<meta property="og:updated_time" content="2018-05-29T07:46:23.817Z">
+<meta property="og:image" content="http://52moyong.top/2018/05/11/小白学数据结构（二%20)/xian.png">
+<meta property="og:image" content="http://52moyong.top/2018/05/11/小白学数据结构（二%20)/zhong.png">
+<meta property="og:image" content="http://52moyong.top/2018/05/11/小白学数据结构（二%20)/hou.png">
+<meta property="og:image" content="http://52moyong.top/2018/05/11/小白学数据结构（二%20)/ph.png">
+<meta property="og:image" content="http://52moyong.top/2018/05/11/小白学数据结构（二%20)/ss.png">
+<meta property="og:image" content="http://52moyong.top/2018/05/11/小白学数据结构（二%20)/bj.png">
+<meta property="og:updated_time" content="2018-05-29T16:53:11.408Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小白学数据结构--树">
+<meta name="twitter:title" content="小白学数据结构--二叉树">
 <meta name="twitter:image" content="http://52moyong.top/2018/05/11/小白学数据结构（二%20)/shu.png">
   
     <link rel="alternative" href="/atom.xml" title="moyong的博客" type="application/atom+xml">
@@ -165,7 +171,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      小白学数据结构--树
+      小白学数据结构--二叉树
     </h1>
   
 
@@ -185,7 +191,7 @@
             <div id="toc-article" class="toc-article">
                 <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
                 <strong class="toc-title">文章目录</strong>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二叉树的遍历"><span class="toc-number">2.</span> <span class="toc-text">二叉树的遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#先序遍历"><span class="toc-number">2.1.</span> <span class="toc-text">先序遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中序遍历"><span class="toc-number">2.2.</span> <span class="toc-text">中序遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后序遍历"><span class="toc-number">2.3.</span> <span class="toc-text">后序遍历</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#平衡二叉树"><span class="toc-number">3.</span> <span class="toc-text">平衡二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索二叉树"><span class="toc-number">4.</span> <span class="toc-text">搜索二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
            </div>
            <script type="text/javascript">
             function showToc(){
@@ -206,7 +212,116 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="/2018/05/11/小白学数据结构（二 )/shu.png" alt=""><br> <a id="more"></a></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前面的介绍线性表的时候说过数据结构分为四大类型，而本文将要介绍的是树形结构。树是一种很重要的数据结构，树形结构在我们实际运用中很常见，比如操作系统的目录就是树形结构。本文主要以树形结构中比较常见的二叉树来进行学习。二叉树，每个节点最多有两个子树结构，节点的左边节点成为左节点，左节点形成的树成为左子树。同理节点的右边节点称为右节点，右节点形成的树成为右子树。更多二叉树的介绍详见百度百科。本文主要学习二叉树中比较常用的类型：平衡二叉树和搜索二叉树。</p>
+<h2 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h2><p>在学习平衡二叉树和搜索二叉树之前，我们先来学习一下二叉树的遍历。二叉树的遍历主要有先序遍历，中序遍历，后续遍历，按层遍历。下面依次讲解。  </p>
+<h3 id="先序遍历"><a href="#先序遍历" class="headerlink" title="先序遍历"></a>先序遍历</h3><p>先序遍历的主要思路是先遍历当前节点（一般是根节点），在遍历左子树，最后遍历右子树，即根左右，如下图所示：<br><img src="/2018/05/11/小白学数据结构（二 )/xian.png" alt="">  </p>
+<h3 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h3><p>中序遍历主要思路是先遍历左子树，在遍历根节点，最后遍历右子树，即左根右，如图所示：<br><img src="/2018/05/11/小白学数据结构（二 )/zhong.png" alt="">   </p>
+<h3 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h3><p>中序遍历主要思路是先遍历左子树，在遍历右子树，最后遍历根节点，即左右根，如图所示：<br><img src="/2018/05/11/小白学数据结构（二 )/hou.png" alt="">  </p>
+<h2 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h2><p>平衡二叉树主要的特点是它的左右两个子树的高度差不超过1，并且左右两子树都是一颗平衡二叉树。根据平衡二叉树的特点，我们要判断二叉树是否是平衡二叉树我们需要知道一下条件：<br>1.左子树是否平衡<br>2.右子树是否平衡<br>3.左子树的高度<br>4.右子树的高度<br>只要满足作1.2的条件，在满足左子树高度与右子树高度不超过1，就是平衡二叉树。判断是否是平衡二叉树的过程如下：<br><img src="/2018/05/11/小白学数据结构（二 )/ph.png" alt=""><br>由上述过程可知，我们要用代码实现上述过程，判断是否是平衡二叉树就需要两个返回值。1.子树是否平衡2.子树的高度。因此我们的代码实现如下：  </p>
+<pre><code>public class IsBalancedTree {
+    //定义一个判断是否时平衡二叉树的返回值
+    public static class ReturnData{
+        public boolean isB;//是否是平衡二叉树
+        public int hight;//子树高度
+
+        public ReturnData(boolean isB,int hight){
+            this.isB=isB;
+            this.hight=hight;
+        }
+    }
+    //一颗树的节点。持有指向左右子节点的引用
+    public static class Node {
+        public int value;
+        public Node left;
+        public Node right;
+
+        public Node(int data) {
+            this.value = data;
+        }
+    }
+    public static ReturnData process(Node root){
+        if(root==null){//空树也是平衡二叉树
+            return new ReturnData(true, 0);
+        }
+        ReturnData leftTree = process(root.left);//拿到左树去判断是否时平衡二叉树
+        if(!leftTree.isB){
+            //如果左树不是平衡二叉树了，那么整棵树就不是平衡二叉树了，高度自然也不重要了
+            return new ReturnData(false, 0);
+        }
+        ReturnData rightTree = process(root.right);//拿到右树去判断是否时平衡二叉树
+        if(!rightTree.isB){
+            //如果右树不是平衡二叉树了，那么整棵树就不是平衡二叉树了，高度自然也不重要了
+            return new ReturnData(false, 0);
+        }
+        //左右子树都是平衡，还需满足其左右子树高度差小于1
+        if(Math.abs(leftTree.hight-rightTree.hight)&gt;1){
+            //高度差大于1，那么整棵树就不是平衡二叉树了，高度自然也不重要了
+            return new ReturnData(false, 0);
+        }
+        //以上条件都满足那么就是平衡二叉树，并且要返回树的高度
+        return new ReturnData(true, 0);
+    }
+    public static boolean isBalanced(Node node){
+        ReturnData result = process(node);
+        return result.isB;
+    }
+    public static void main(String[] args) {
+        Node node = new Node(5);
+        node.left=new Node(2);
+        node.right=new Node(1);
+        node.left.left=new Node(4);
+        System.out.println(isBalanced(node));
+
+    }
+}
+</code></pre><h2 id="搜索二叉树"><a href="#搜索二叉树" class="headerlink" title="搜索二叉树"></a>搜索二叉树</h2><p>搜索二叉树它要么是一颗空树，要么有一下特点:若一颗树的左子树不为空，那么其左子树的所有节点都小于根节点，若一颗树的右子树不为空，那么其右子树的所有节点都大于根节点。下图则为典型的搜索二叉树：<br><img src="/2018/05/11/小白学数据结构（二 )/ss.png" alt=""><br>而我们该怎么去判断一颗树是都是搜索二叉树呢，其实方法很多，这里主要选取一种比较简单的方法，用到了我们上面二叉树遍历的中序遍历来解决这个问题。搜索二叉树 还有一个重要的结论就是在使用中序遍历 搜索二叉树的结果中会得到一个升序的序列。即遍历出来的数据是按照升序进行 排列的。因此我们只需要在遍历的时候与上一个数进行比较，如果都是大于上个数，那么该二叉树就是搜索二叉树。代码实现如下：  </p>
+<pre><code>public class IsBST {
+    //一颗树的节点。持有指向左右子节点的引用
+        public static class Node {
+            public int value;
+            public Node left;
+            public Node right;
+
+            public Node(int data) {
+                this.value = data;
+            }
+        }
+
+    public static boolean isBST(Node head) {
+        int temp=Integer.MIN_VALUE;//临时记录上一个节点的值,y一开始 为系统最小值
+        if (head != null) {
+            Stack&lt;Node&gt; stack = new Stack&lt;Node&gt;();
+            while (!stack.isEmpty() || head != null) {
+                if (head != null) {
+                    stack.push(head);
+                    head = head.left;
+                } else {
+                    head = stack.pop();
+                    if(head.value&gt;temp){
+                        temp=head.value;
+                    }else{
+                        return false;
+                    }
+                    head = head.right;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Node node = new Node(5);
+        node.left=new Node(3);
+        node.right=new Node(8);
+        node.left.left=new Node(1);
+        node.left.right=new Node(4);
+        node.right.left=new Node(6);
+        node.right.right=new Node(9);
+        System.out.println(isBST(node));
+    }
+}  
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>平衡树虽然在一定程度上能够限制了树的高度，但是它进行查找某个元素的时候还是需要遍历整棵树，效率不是很高，而搜索二叉树由于它根节点都比左子树大，而比右子树小的特点，我们每次进行查找都能过滤掉一半的数，有点类似于二分查找的算法，但是也会有极端的情况出现。比如下图所示：<br><img src="/2018/05/11/小白学数据结构（二 )/bj.png" alt=""><br>这时候我们就想，如果搜索二叉树能够变成平衡树，那么是不是就能有更好的效率了呢，所以就有了平衡二叉搜索树，这种树的实现有：有红黑树、AVL、替罪羊树、Treap、伸展树等，下次我们将要学习前两种红黑树和AVL树。</p>
+
       
 
       
@@ -250,7 +365,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-数据结构 -线性表</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-数据结构 -二叉树</a>
         		</li>
       		
 		</ul>
@@ -358,7 +473,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二叉树的遍历"><span class="toc-number">2.</span> <span class="toc-text">二叉树的遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#先序遍历"><span class="toc-number">2.1.</span> <span class="toc-text">先序遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中序遍历"><span class="toc-number">2.2.</span> <span class="toc-text">中序遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后序遍历"><span class="toc-number">2.3.</span> <span class="toc-text">后序遍历</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#平衡二叉树"><span class="toc-number">3.</span> <span class="toc-text">平衡二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索二叉树"><span class="toc-number">4.</span> <span class="toc-text">搜索二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -480,6 +595,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">nio 网络编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">-java8 -StreamAPI</a>
               </li>
              
@@ -496,7 +615,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">nio 网络编程</a>
+                <a href="javascript:void(0)" class="js-tag color3">-算法 -分治</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,7 +623,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">-算法 -分治</a>
+                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -线性表</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,11 +631,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -线性表</a>
+                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -红黑树</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -红黑树</a>
+                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -二叉树</a>
               </li>
             
             <div class="clearfix"></div>
