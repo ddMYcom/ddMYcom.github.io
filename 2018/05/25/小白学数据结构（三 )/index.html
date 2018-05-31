@@ -15,7 +15,11 @@
 <meta property="og:site_name" content="moyong的博客">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://52moyong.top/2018/05/25/小白学数据结构（三%20)/avl.png">
-<meta property="og:updated_time" content="2018-05-29T07:53:08.333Z">
+<meta property="og:image" content="http://52moyong.top/2018/05/25/小白学数据结构（三%20)/isAVL.png">
+<meta property="og:image" content="http://52moyong.top/2018/05/25/小白学数据结构（三%20)/LL.png">
+<meta property="og:image" content="http://52moyong.top/2018/05/25/小白学数据结构（三%20)/RR.png">
+<meta property="og:image" content="http://52moyong.top/2018/05/25/小白学数据结构（三%20)/LR.png">
+<meta property="og:updated_time" content="2018-05-31T04:38:19.651Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小白学数据结构--AVL树">
 <meta name="twitter:image" content="http://52moyong.top/2018/05/25/小白学数据结构（三%20)/avl.png">
@@ -185,7 +189,7 @@
             <div id="toc-article" class="toc-article">
                 <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
                 <strong class="toc-title">文章目录</strong>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AVL树的旋转"><span class="toc-number">2.</span> <span class="toc-text">AVL树的旋转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LL右旋转"><span class="toc-number">3.</span> <span class="toc-text">LL右旋转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RR左旋转"><span class="toc-number">4.</span> <span class="toc-text">RR左旋转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR型左旋转，右旋转"><span class="toc-number">5.</span> <span class="toc-text">LR型左旋转，右旋转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR型右旋转，左旋转"><span class="toc-number">6.</span> <span class="toc-text">LR型右旋转，左旋转</span></a></li></ol>
            </div>
            <script type="text/javascript">
             function showToc(){
@@ -206,7 +210,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="/2018/05/25/小白学数据结构（三 )/avl.png" alt=""><br> <a id="more"></a></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前面我们介绍了平衡二叉树和二叉搜索树在查找的时候可能会出现效率不高的情况。而我们现在要学习的是带有平衡性的搜索二叉树—AVL树。AVL树是最先发明的自平衡二叉搜索树。和平衡二叉树一样，AVL树中任何节点的两个子树的高度最大差别为一。所以说AVL树是一颗严格的平衡二叉树树。</p>
+<h2 id="AVL树的旋转"><a href="#AVL树的旋转" class="headerlink" title="AVL树的旋转"></a>AVL树的旋转</h2><p>根据上面我们认识的AVL树，我们可以很容易的识别出是不是AVL树,如下图所示：<br><img src="/2018/05/25/小白学数据结构（三 )/isAVL.png" alt=""><br>如果我们对AVL树进行插入数值，那么AVL树又是怎么保证它的特性呢，这时就可以通过旋转操作来保持AVL树的特性。AVL树本身就是就是一颗二叉搜索树，所在在插入数据的时候，需要按照二叉搜索树的规则来进行插入数据，此时就有可能出现上一篇文章的结尾中，出现左右子树可能恶化成线性树，破坏平衡性，因此我们旋转的目的就是为了降低树的高度来保持树的平衡。而我们的旋转可以分为左旋和右旋：<br>1.右旋：b是a的左子树。那么当该树被平衡性被破坏时，我们将b围绕着a向右旋转（按照二叉搜索树的规则a节点一定比左子树的节点都大）所以a就被旋转成b的右子树。<br>2.左旋：b是a的右子树。那么当该树被平衡性被破坏时，我们将b围绕着a向左旋转（按照二叉搜索树的规则a节点一定比右子树的节点都小）所以a就被旋转成b的左子树。插入数据导致不平衡又可以分为四种情况：LL型，RR型，LR型，RL型。前两种属于单旋转，后两种则属于双旋转。 </p>
+<h2 id="LL右旋转"><a href="#LL右旋转" class="headerlink" title="LL右旋转"></a>LL右旋转</h2><p>LL型，单旋转操作，LL型是由于插入左子树的左节点导致左子树的左子树成线性排列导致不平衡，所以要对左左子树进行右旋操作,右旋转过程如下图所示：<br><img src="/2018/05/25/小白学数据结构（三 )/LL.png" alt="">  </p>
+<h2 id="RR左旋转"><a href="#RR左旋转" class="headerlink" title="RR左旋转"></a>RR左旋转</h2><p>RR型，单旋转操作，RR型是由于插入右子树的右节点导致右子树的右子树成线性排列导致不平衡，所以要对右子树进行左旋操作,器旋转过程如下图所示：<br><img src="/2018/05/25/小白学数据结构（三 )/RR.png" alt=""> </p>
+<h2 id="LR型左旋转，右旋转"><a href="#LR型左旋转，右旋转" class="headerlink" title="LR型左旋转，右旋转"></a>LR型左旋转，右旋转</h2><p>LR型，双旋转操作，LR型是由于插入左子树的右节点导致左子树的不平衡性，但是它并不是成线性排列，所以要对左子树进行两次旋转的操作，先进行左旋转操作，使其变成左子树的线性排列，然后在进行左旋转操作使其变成平衡，LR型旋转如下图所示：<br><img src="/2018/05/25/小白学数据结构（三 )/LR.png" alt="">   </p>
+<h2 id="LR型右旋转，左旋转"><a href="#LR型右旋转，左旋转" class="headerlink" title="LR型右旋转，左旋转"></a>LR型右旋转，左旋转</h2>
       
 
       
@@ -358,7 +367,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AVL树的旋转"><span class="toc-number">2.</span> <span class="toc-text">AVL树的旋转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LL右旋转"><span class="toc-number">3.</span> <span class="toc-text">LL右旋转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RR左旋转"><span class="toc-number">4.</span> <span class="toc-text">RR左旋转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR型左旋转，右旋转"><span class="toc-number">5.</span> <span class="toc-text">LR型左旋转，右旋转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR型右旋转，左旋转"><span class="toc-number">6.</span> <span class="toc-text">LR型右旋转，左旋转</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -488,19 +497,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-java8 -lambda</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">-算法 -堆</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">-算法 -分治</a>
+                <a href="javascript:void(0)" class="js-tag color5">-java8 -lambda</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -508,11 +509,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -线性表</a>
+                <a href="javascript:void(0)" class="js-tag color3">-算法 -分治</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">-数据结构 -AVL树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -线性表</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -521,6 +526,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">-数据结构 -二叉树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">-随笔</a>
               </li>
             
             <div class="clearfix"></div>
