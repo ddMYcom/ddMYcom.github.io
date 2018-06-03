@@ -6,19 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://52moyong.top">
-  <title>实习时记的一些笔记 | moyong的博客</title>
+  <title>小白学数据结构--AVL树 | moyong的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="-随笔 -笔记">
+  <meta name="keywords" content="-数据结构 -AVL树">
 <meta property="og:type" content="article">
-<meta property="og:title" content="实习时记的一些笔记">
-<meta property="og:url" content="http://52moyong.top/2018/04/18/实习笔记/index.html">
+<meta property="og:title" content="小白学数据结构--AVL树">
+<meta property="og:url" content="http://52moyong.top/2018/05/16/小白学数据结构（三 )/index.html">
 <meta property="og:site_name" content="moyong的博客">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://52moyong.top/2018/04/18/实习笔记/aleng.png">
-<meta property="og:updated_time" content="2018-05-10T08:32:45.080Z">
+<meta property="og:image" content="http://52moyong.top/2018/05/16/小白学数据结构（三%20)/avl.png">
+<meta property="og:image" content="http://52moyong.top/2018/05/16/小白学数据结构（三%20)/isAVL.png">
+<meta property="og:image" content="http://52moyong.top/2018/05/16/小白学数据结构（三%20)/LL.png">
+<meta property="og:image" content="http://52moyong.top/2018/05/16/小白学数据结构（三%20)/RR.png">
+<meta property="og:image" content="http://52moyong.top/2018/05/16/小白学数据结构（三%20)/LR.png">
+<meta property="og:image" content="http://52moyong.top/2018/05/16/小白学数据结构（三%20)/RL.png">
+<meta property="og:updated_time" content="2018-06-03T16:26:11.908Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="实习时记的一些笔记">
-<meta name="twitter:image" content="http://52moyong.top/2018/04/18/实习笔记/aleng.png">
+<meta name="twitter:title" content="小白学数据结构--AVL树">
+<meta name="twitter:image" content="http://52moyong.top/2018/05/16/小白学数据结构（三%20)/avl.png">
   
     <link rel="alternative" href="/atom.xml" title="moyong的博客" type="application/atom+xml">
   
@@ -158,20 +163,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-实习笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-小白学数据结构（三 )" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      实习时记的一些笔记
+      小白学数据结构--AVL树
     </h1>
   
 
         
-        <a href="/2018/04/18/实习笔记/" class="archive-article-date">
-  	<time datetime="2018-04-18T13:59:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-18</time>
+        <a href="/2018/05/16/小白学数据结构（三 )/" class="archive-article-date">
+  	<time datetime="2018-05-16T15:11:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
 </a>
         
       </header>
@@ -185,7 +190,7 @@
             <div id="toc-article" class="toc-article">
                 <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
                 <strong class="toc-title">文章目录</strong>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#笔记内容"><span class="toc-number">2.</span> <span class="toc-text">笔记内容</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AVL树的旋转"><span class="toc-number">2.</span> <span class="toc-text">AVL树的旋转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LL右旋转"><span class="toc-number">3.</span> <span class="toc-text">LL右旋转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RR左旋转"><span class="toc-number">4.</span> <span class="toc-text">RR左旋转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR型左旋转，右旋转"><span class="toc-number">5.</span> <span class="toc-text">LR型左旋转，右旋转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RL型右旋转，左旋转"><span class="toc-number">6.</span> <span class="toc-text">RL型右旋转，左旋转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a></li></ol>
            </div>
            <script type="text/javascript">
             function showToc(){
@@ -205,11 +210,14 @@
         <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/2018/04/18/实习笔记/aleng.png" alt=""><br> <a id="more"></a></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>刚去公司实习的时候，还是比较勤奋的，遇到很多好的解决方案都会记下来，虽然都是很简单的东西，但是对自己帮助还是很大的，但是由于后面还是太懒了，所以记的笔记也不是很多，还是希望以后自己能多勤奋点记笔记把</p>
-<h2 id="笔记内容"><a href="#笔记内容" class="headerlink" title="笔记内容"></a>笔记内容</h2><p>1.当下拉框不是select时，而是使用ul，li的时候无法将name和value作为参数给表单提交，这时候可以使用一个隐藏域input作为当前想要提交的数据，通过选择时（单击事件等）把所要的值设置到value中即可。<br>2.this关键字。如果父类方法中有this的引用，如果是父类实例化后调用该方法，那么this指的是父类的实例，如果是子类实例化后调用该方法，那么指的是子类实例，既，哪个实例对象调用该方法就指的是谁的实例。<br>3.struts做国际化的时候中文配置文件输入中文需要把编码格式改成iso-8859-1,这样在读取中文内容的时候就不会出现乱码。<br>4.当for循环里面有需要根据id等条件去查询数据库的时候，为了避免for循环次数产生多次查询数据库，可以先把所有数据查出来放到一个map里面，key为id(或者要查找的条件)，value为当前条件查出来的值，或者for循环里你想要的查找的值。<br>5.一个方法返回得到两个数据可以使用引用传递。比如new 两个对象，把这两个对象放到方法中作为参数，执行这个方法后就可以得到改变后的这两个对象的内容数据。<br>6.通过定义一个boolean类型的全局变量（常量），然后进行判断用来切换新旧方法的实现。<br>7.可以使用函数重载（增加参数）。然后调用原来的方法来对方法进行扩展。<br>8.策略模式就是用来封装变化（算法）的，提供一个策略接口，不同的策略算法都实现这个接口，同时用一个工厂来生成不同的策略，生成策略的方法可以用反射，这样就不会因为新加策略而改动工厂。即抽象工厂+策略模式实现了减少类与类之间的耦合（依赖）。<br>9.遮罩层关闭之前调用此函数<br>function reload(){<br>        $(“.reload_btn”,parent.document).trigger(‘click’);<br>    }<br>背景层：重新加载页面   <li style="display:none;"><div class="reload_btn"></div></li>   不做任何事情，只是定义一个属性<br>$(“.reload_btn”).click(function(){<br>         location.reload();<br>     });<br>这样就可以实现遮罩层修改数据后，背景层能同步上。<br>10.json中对于{“字段”：null}这样的key,value键值对是不显示的，会隐藏掉。这时我们就需要用到fastjson的SerializerFeature序列化属性也就是这个方法：JSONObject.toJSONString(Object object, SerializerFeature… features)<br>11.clazz.getDeclaredFields();只能获取本类的所有字段，不能获取父类的字段。<br>12.获取数据库的数据时，如果要查全部，一定要谨慎，看看是不是有其他方案可以解决，尽量不要查全部，因为数据多了会有性能问题。<br>13.一些小细节：显示问题<br>待审核—》编辑<br>审核过—》查看</p>
-<p>sql语句：<br>in() 集合要记得判断空，size是否等于0<br>not in ()要谨慎，几乎是查询全部，要考虑数据量</p>
-<p>一些不可逆的操作一定要再次弹框提示，比如删除，填写意见后不可以更改等。</p>
+        <p><img src="/2018/05/16/小白学数据结构（三 )/avl.png" alt=""><br> <a id="more"></a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前面我们介绍了平衡二叉树和二叉搜索树在查找的时候可能会出现效率不高的情况。而我们现在要学习的是带有平衡性的搜索二叉树—AVL树。AVL树是最先发明的自平衡二叉搜索树。和平衡二叉树一样，AVL树中任何节点的两个子树的高度最大差别为一。所以说AVL树是一颗严格的平衡二叉树树。</p>
+<h2 id="AVL树的旋转"><a href="#AVL树的旋转" class="headerlink" title="AVL树的旋转"></a>AVL树的旋转</h2><p>根据上面我们认识的AVL树，我们可以很容易的识别出是不是AVL树,如下图所示：<br><img src="/2018/05/16/小白学数据结构（三 )/isAVL.png" alt=""><br>如果我们对AVL树进行插入数值，那么AVL树又是怎么保证它的特性呢，这时就可以通过旋转操作来保持AVL树的特性。AVL树本身就是就是一颗二叉搜索树，所在在插入数据的时候，需要按照二叉搜索树的规则来进行插入数据，此时就有可能出现上一篇文章的结尾中，出现左右子树可能恶化成线性树，破坏平衡性，因此我们旋转的目的就是为了降低树的高度来保持树的平衡。而我们的旋转可以分为左旋和右旋：<br>1.右旋：b是a的左子树。那么当该树被平衡性被破坏时，我们将b围绕着a向右旋转（按照二叉搜索树的规则a节点一定比左子树的节点都大）所以a就被旋转成b的右子树。<br>2.左旋：b是a的右子树。那么当该树被平衡性被破坏时，我们将b围绕着a向左旋转（按照二叉搜索树的规则a节点一定比右子树的节点都小）所以a就被旋转成b的左子树。插入数据导致不平衡又可以分为四种情况：LL型，RR型，LR型，RL型。前两种属于单旋转，后两种则属于双旋转。 </p>
+<h2 id="LL右旋转"><a href="#LL右旋转" class="headerlink" title="LL右旋转"></a>LL右旋转</h2><p>LL型，单旋转操作，LL型是由于插入左子树的左节点导致左子树的左子树成线性排列导致不平衡，所以要对左左子树进行右旋操作,右旋转过程如下图所示：<br><img src="/2018/05/16/小白学数据结构（三 )/LL.png" alt="">  </p>
+<h2 id="RR左旋转"><a href="#RR左旋转" class="headerlink" title="RR左旋转"></a>RR左旋转</h2><p>RR型，单旋转操作，RR型是由于插入右子树的右节点导致右子树的右子树成线性排列导致不平衡，所以要对右子树进行左旋操作,器旋转过程如下图所示：<br><img src="/2018/05/16/小白学数据结构（三 )/RR.png" alt=""> </p>
+<h2 id="LR型左旋转，右旋转"><a href="#LR型左旋转，右旋转" class="headerlink" title="LR型左旋转，右旋转"></a>LR型左旋转，右旋转</h2><p>LR型，双旋转操作，LR型是由于插入左子树的右节点导致左子树的不平衡性，但是它并不是成线性排列，所以要对左子树进行两次旋转的操作，先进行左旋转操作，使其变成左子树的线性排列，然后在进行右旋转操作使其变成平衡，LR型旋转如下图所示：<br><img src="/2018/05/16/小白学数据结构（三 )/LR.png" alt="">   </p>
+<h2 id="RL型右旋转，左旋转"><a href="#RL型右旋转，左旋转" class="headerlink" title="RL型右旋转，左旋转"></a>RL型右旋转，左旋转</h2><p>RL型，双旋转操作，RL型是由于插入右子树的左节点导致右子树的不平衡性，但是它并不是成线性排列，所以要对右子树进行两次旋转的操作，先进行右旋转操作，使其变成右子树的线性排列，然后在进行左旋转操作使其变成平衡，LR型旋转如下图所示：<br><img src="/2018/05/16/小白学数据结构（三 )/RL.png" alt="">     </p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文主要介绍了AVL树的特点，以及AVL树在插入节点时是如何保持平衡的，由于代码的实现是比较复杂的所以本文并不打算对代码进行实现，我们只需要了解其特性就可以了。</p>
 
       
 
@@ -254,7 +262,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">-随笔 -笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-数据结构 -AVL树</a>
         		</li>
       		
 		</ul>
@@ -310,7 +318,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://52moyong.top/2018/04/18/实习笔记/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://52moyong.top/2018/05/16/小白学数据结构（三 )/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -324,18 +332,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/05/02/小白学数据结构和算法（一）/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/05/24/哈希函数和哈希表/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          小白学算法--分治算法
+          哈希函数和哈希表
         
       </div>
     </a>
   
   
-    <a href="/2018/01/26/java-nio初探/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">java nio初探</div>
+    <a href="/2018/05/11/小白学数据结构（二 )/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">小白学数据结构--二叉树</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -362,7 +370,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#笔记内容"><span class="toc-number">2.</span> <span class="toc-text">笔记内容</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AVL树的旋转"><span class="toc-number">2.</span> <span class="toc-text">AVL树的旋转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LL右旋转"><span class="toc-number">3.</span> <span class="toc-text">LL右旋转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RR左旋转"><span class="toc-number">4.</span> <span class="toc-text">RR左旋转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR型左旋转，右旋转"><span class="toc-number">5.</span> <span class="toc-text">LR型左旋转，右旋转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RL型右旋转，左旋转"><span class="toc-number">6.</span> <span class="toc-text">RL型右旋转，左旋转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a></li></ol>
                     </div>
                 </span>
             </div>
