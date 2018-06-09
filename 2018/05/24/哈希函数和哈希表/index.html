@@ -14,14 +14,14 @@
 <meta property="og:url" content="http://52moyong.top/2018/05/24/哈希函数和哈希表/index.html">
 <meta property="og:site_name" content="moyong的博客">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://52moyong.top/2018/05/24/哈希函数和哈希表/hx.png">
-<meta property="og:image" content="http://52moyong.top/2018/05/24/哈希函数和哈希表/5.png">
-<meta property="og:image" content="http://52moyong.top/2018/05/24/哈希函数和哈希表/hxb.png">
-<meta property="og:image" content="http://52moyong.top/2018/05/24/哈希函数和哈希表/fwq.png">
+<meta property="og:image" content="http://52moyong.top/2018/05/24/哈希函数和哈希表/哈希函数和哈希表/hx.png">
+<meta property="og:image" content="http://52moyong.top/2018/05/24/哈希函数和哈希表/哈希函数和哈希表/5.png">
+<meta property="og:image" content="http://52moyong.top/2018/05/24/哈希函数和哈希表/哈希函数和哈希表/hxb.png">
+<meta property="og:image" content="http://52moyong.top/2018/05/24/哈希函数和哈希表/哈希函数和哈希表/fwq.png">
 <meta property="og:updated_time" content="2018-06-03T16:25:41.362Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="哈希函数和哈希表">
-<meta name="twitter:image" content="http://52moyong.top/2018/05/24/哈希函数和哈希表/hx.png">
+<meta name="twitter:image" content="http://52moyong.top/2018/05/24/哈希函数和哈希表/哈希函数和哈希表/hx.png">
   
     <link rel="alternative" href="/atom.xml" title="moyong的博客" type="application/atom+xml">
   
@@ -80,6 +80,10 @@
             
     			
     			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'jsonContent')" href="javascript:void(0)">[object Object]</a>
     			
             
 		</nav>
@@ -208,11 +212,11 @@
         <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/2018/05/24/哈希函数和哈希表/hx.png" alt=""><br> <a id="more"></a></p>
+        <p><img src="哈希函数和哈希表/hx.png" alt=""><br> <a id="more"></a></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前面介绍的线性表和树这两种数据结构中，插入的记录的相对位置一般是随机的，即和记录的关键字之间不存在确定的关系，想要查找相关的记录需要进行比较，查找的效率依赖于查找过程中的比较次数。而我们理想的状态是能够直接查找到所记录的值，所以就需要对查找的值和它的存储位置建立一个对应的关系f,使每个值都对应着一个存储位置。  </p>
-<h2 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h2><p>哈希函数，既然是函数那么就会有输入和输出，同时作为一个函数又会有它自己的一些性质，而经典的哈希函数有一下特点：<br>1.哈希函数的输入域是无穷大的<br>2.哈希函数的输出域是有穷尽的<br>3.当输入域是固定的时候，输出域也是固定的。<br>4.当输入域不一样的时候，有可能得到一样的值（哈希冲突或者碰撞）。<br>5.当输入域的样本容量很大的时候，输出域是成均匀分布的（非常重要的性质）。<br>对于第一点很好理解，比如一个函数我们接受的是一个String类型的数据那么我们就能传入的参数将是无穷个的，而第二点也是很好理解，即我们函数的输出结果的数量是固定的，是有一个范围值的，比如1-10000。无论输入什么数据都会返回这个1-10000内的数值。对于第三点，即我们输入同一个值，那么得到的输出结果是一样的，比如第一次输入1，第二次还是输入1，两次得到的结果是一样的。第四点结合上面三点的性质也不难，既然输入域是无穷大的，而输出域的结果是固定的，那么当有很多输入的样本量大于输出的结果时，必然会有不同的输入得到一样的输出结果。对于第五个性质可能比较难理解，如下图所示：<br><img src="/2018/05/24/哈希函数和哈希表/5.png" alt="">  </p>
-<h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><p>哈希表中的元素是由哈希函数确定的，即hash函数算出来的值作为该元素在 hash表中的存储位置。经典哈希表的实现如下图所示：<br><img src="/2018/05/24/哈希函数和哈希表/hxb.png" alt=""><br>上面是经典hash表的实现，而在java中的hash表的实现是对产生冲突的值形成的是红黑树，而不是链表。  </p>
-<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>哈希函数的是一个十分重要的东西，因为它的增删改查的效率可以到达O(1)，在大数据的处理上表现的十分好。同时还能对信息进行加密处理，如MD5。以及对服务器分流操作等，下面就来看看hash函数是怎么对服务器进行分流，达到负载均衡的效果。实现过程如下图所示：<br><img src="/2018/05/24/哈希函数和哈希表/fwq.png" alt=""><br>以上就是经典的哈希函数实现服务器分流的效果，但是这还是有缺陷的，比如我们要实现增加服务器和减少就会有一定的问题，这个问题在下篇文章继续学习。  </p>
+<h2 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h2><p>哈希函数，既然是函数那么就会有输入和输出，同时作为一个函数又会有它自己的一些性质，而经典的哈希函数有一下特点：<br>1.哈希函数的输入域是无穷大的<br>2.哈希函数的输出域是有穷尽的<br>3.当输入域是固定的时候，输出域也是固定的。<br>4.当输入域不一样的时候，有可能得到一样的值（哈希冲突或者碰撞）。<br>5.当输入域的样本容量很大的时候，输出域是成均匀分布的（非常重要的性质）。<br>对于第一点很好理解，比如一个函数我们接受的是一个String类型的数据那么我们就能传入的参数将是无穷个的，而第二点也是很好理解，即我们函数的输出结果的数量是固定的，是有一个范围值的，比如1-10000。无论输入什么数据都会返回这个1-10000内的数值。对于第三点，即我们输入同一个值，那么得到的输出结果是一样的，比如第一次输入1，第二次还是输入1，两次得到的结果是一样的。第四点结合上面三点的性质也不难，既然输入域是无穷大的，而输出域的结果是固定的，那么当有很多输入的样本量大于输出的结果时，必然会有不同的输入得到一样的输出结果。对于第五个性质可能比较难理解，如下图所示：<br><img src="哈希函数和哈希表/5.png" alt="">  </p>
+<h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><p>哈希表中的元素是由哈希函数确定的，即hash函数算出来的值作为该元素在 hash表中的存储位置。经典哈希表的实现如下图所示：<br><img src="哈希函数和哈希表/hxb.png" alt=""><br>上面是经典hash表的实现，而在java中的hash表的实现是对产生冲突的值形成的是红黑树，而不是链表。  </p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>哈希函数的是一个十分重要的东西，因为它的增删改查的效率可以到达O(1)，在大数据的处理上表现的十分好。同时还能对信息进行加密处理，如MD5。以及对服务器分流操作等，下面就来看看hash函数是怎么对服务器进行分流，达到负载均衡的效果。实现过程如下图所示：<br><img src="哈希函数和哈希表/fwq.png" alt=""><br>以上就是经典的哈希函数实现服务器分流的效果，但是这还是有缺陷的，比如我们要实现增加服务器和减少就会有一定的问题，这个问题在下篇文章继续学习。  </p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>由于哈希函数实现的过程比较复杂，而且实现的方式也有很多种，这里就不给出具体实现了，我们只要记住哈希函数的这些特性就可以了。</p>
 
       
@@ -453,21 +457,29 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
       
     
+      
+      
+      
+    
     
 
     <ul style="width: 70%">
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 25%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      <li style="width: 25%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 25%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      
+        
+      
+      <li style="width: 25%" q-on="click: openSlider(e, 'jsonContent')"><a href="javascript:void(0)" q-class="active:jsonContent">[object Object]</a></li>
       
         
     </ul>
@@ -516,11 +528,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">-随笔 -笔记</a>
+                <a href="javascript:void(0)" class="js-tag color3">-算法 -分治</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">-算法 -分治</a>
+                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -线性表</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,7 +544,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -线性表</a>
+                <a href="javascript:void(0)" class="js-tag color3">-随笔 -笔记</a>
               </li>
             
             <div class="clearfix"></div>

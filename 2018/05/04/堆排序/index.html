@@ -14,12 +14,12 @@
 <meta property="og:url" content="http://52moyong.top/2018/05/04/堆排序/index.html">
 <meta property="og:site_name" content="moyong的博客">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://52moyong.top/2018/05/04/堆排序/duibg.png">
-<meta property="og:image" content="http://52moyong.top/2018/05/04/堆排序/dui.png">
+<meta property="og:image" content="http://52moyong.top/2018/05/04/堆排序/堆排序/duibg.png">
+<meta property="og:image" content="http://52moyong.top/2018/05/04/堆排序/堆排序/dui.png">
 <meta property="og:updated_time" content="2018-05-12T06:52:29.720Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="堆排序">
-<meta name="twitter:image" content="http://52moyong.top/2018/05/04/堆排序/duibg.png">
+<meta name="twitter:image" content="http://52moyong.top/2018/05/04/堆排序/堆排序/duibg.png">
   
     <link rel="alternative" href="/atom.xml" title="moyong的博客" type="application/atom+xml">
   
@@ -78,6 +78,10 @@
             
     			
     			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'jsonContent')" href="javascript:void(0)">[object Object]</a>
     			
             
 		</nav>
@@ -206,9 +210,9 @@
         <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/2018/05/04/堆排序/duibg.png" alt=""><br> <a id="more"></a></p>
+        <p><img src="堆排序/duibg.png" alt=""><br> <a id="more"></a></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>堆是一种很重要的数据结构，堆结构其实是颗完全二叉树。我们所说的优先级队列其实也就是堆结构，所以说堆结构在在很多地方都扮演着很重要的角色，前面的分治算法中已经介绍了快速排序和归并排序两个重要的排序算法，本文在继续补充一个同样很重要的排序算法–堆排序</p>
-<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><p>堆是一种完全二叉树的结构，是一种非常重要的数据结构。完全二叉树，完全二叉树主要有两种类型，一种是满二叉树，即除了最后一层外所有的叶子节点都是满的，每个父节点都有左右两个子节点。还有一种情况是，最后一颗二叉树除了最后一层以外节点数都达到最大个数，最后一层的所有节点都连续集中在最左边。堆又可以分为大根堆和小根堆，大根堆是每个节点的值大于左右子节点的值，小根堆是每个子节点的值小于左右子节点的值。 大根堆的根节点一定是整棵树的最大值，小根堆的根节点一定是整颗树的最小值，所以堆排序的主要思路是构造大根堆后把根节点和数组最后一个数交换位置，然后除去数组最后一个数在继续构建大根堆，此时根节点就是当前构造大根堆中的最大值（同时也是整个数组的第二大值），然后把根节点和当前构造大根堆的数组的最后一只数进行交换。重复上诉操作指导只剩下根节点即可得到最后的排序结果<br>堆排序的主要步骤为：<br>1.将数组根据公式构造出一个完全二叉树<br>2.将完全二叉树转换成大根堆（升序构建大根堆，降序构建小根堆）<br>3.将大根堆的根节点和当前构造大根堆的数组的最后一个数交换位置<br>4.除去交换后的数组的最后一个数继续构造大根堆重复3步骤<br>5.直到只剩根节点，即可得到有序数组<br>以下就是堆排序的过程：<br><img src="/2018/05/04/堆排序/dui.png" alt=""><br>堆排序代码实现如下：  </p>
+<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><p>堆是一种完全二叉树的结构，是一种非常重要的数据结构。完全二叉树，完全二叉树主要有两种类型，一种是满二叉树，即除了最后一层外所有的叶子节点都是满的，每个父节点都有左右两个子节点。还有一种情况是，最后一颗二叉树除了最后一层以外节点数都达到最大个数，最后一层的所有节点都连续集中在最左边。堆又可以分为大根堆和小根堆，大根堆是每个节点的值大于左右子节点的值，小根堆是每个子节点的值小于左右子节点的值。 大根堆的根节点一定是整棵树的最大值，小根堆的根节点一定是整颗树的最小值，所以堆排序的主要思路是构造大根堆后把根节点和数组最后一个数交换位置，然后除去数组最后一个数在继续构建大根堆，此时根节点就是当前构造大根堆中的最大值（同时也是整个数组的第二大值），然后把根节点和当前构造大根堆的数组的最后一只数进行交换。重复上诉操作指导只剩下根节点即可得到最后的排序结果<br>堆排序的主要步骤为：<br>1.将数组根据公式构造出一个完全二叉树<br>2.将完全二叉树转换成大根堆（升序构建大根堆，降序构建小根堆）<br>3.将大根堆的根节点和当前构造大根堆的数组的最后一个数交换位置<br>4.除去交换后的数组的最后一个数继续构造大根堆重复3步骤<br>5.直到只剩根节点，即可得到有序数组<br>以下就是堆排序的过程：<br><img src="堆排序/dui.png" alt=""><br>堆排序代码实现如下：  </p>
 <pre><code>public class HeapSort {
 public static void heapSort(int[] arr) {
     if (arr == null || arr.length &lt; 2) {
@@ -502,21 +506,29 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
       
     
+      
+      
+      
+    
     
 
     <ul style="width: 70%">
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 25%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      <li style="width: 25%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 25%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      
+        
+      
+      <li style="width: 25%" q-on="click: openSlider(e, 'jsonContent')"><a href="javascript:void(0)" q-class="active:jsonContent">[object Object]</a></li>
       
         
     </ul>
@@ -565,11 +577,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">-随笔 -笔记</a>
+                <a href="javascript:void(0)" class="js-tag color3">-算法 -分治</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">-算法 -分治</a>
+                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -线性表</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,7 +593,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -线性表</a>
+                <a href="javascript:void(0)" class="js-tag color3">-随笔 -笔记</a>
               </li>
             
             <div class="clearfix"></div>
