@@ -16,18 +16,18 @@
 <meta property="og:site_name" content="moyong的博客">
 <meta property="og:description" content="前言前阵子java9已经出来了，但是请注意这里不是讲java9的新特性，因为java8的新特性笔者之前都没接触过~,毕竟自己做的项目没用上，所以就想着还是等工作的时候遇到了在进行学习吧，没想到实习的公司用到了很多java8的新特性（实习第二天，还是一直处于打酱油的状态(⊙o⊙)…），所以就开始了我的java8新特性的学习之路~~ Lambda表达式简介Lambda表达式是Java8里的一个重要特性">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://52moyong.top/2017/12/12/java8新特性/java8新特性/001.png">
-<meta property="og:image" content="http://52moyong.top/2017/12/12/java8新特性/java8新特性/002.png">
-<meta property="og:image" content="http://52moyong.top/2017/12/12/java8新特性/java8新特性/003.png">
-<meta property="og:image" content="http://52moyong.top/2017/12/12/java8新特性/java8新特性/004.png">
-<meta property="og:image" content="http://52moyong.top/2017/12/12/java8新特性/java8新特性/005.png">
-<meta property="og:image" content="http://52moyong.top/2017/12/12/java8新特性/java8新特性/006.png">
-<meta property="og:image" content="http://52moyong.top/2017/12/12/java8新特性/java8新特性/007.png">
-<meta property="og:updated_time" content="2018-05-10T07:01:31.364Z">
+<meta property="og:image" content="http://52moyong.top/2017/12/12/java8新特性/java8New/001.png">
+<meta property="og:image" content="http://52moyong.top/2017/12/12/java8新特性/java8New/002.png">
+<meta property="og:image" content="http://52moyong.top/2017/12/12/java8新特性/java8New/003.png">
+<meta property="og:image" content="http://52moyong.top/2017/12/12/java8新特性/java8New/004.png">
+<meta property="og:image" content="http://52moyong.top/2017/12/12/java8新特性/java8New/005.png">
+<meta property="og:image" content="http://52moyong.top/2017/12/12/java8新特性/java8New/006.png">
+<meta property="og:image" content="http://52moyong.top/2017/12/12/java8新特性/java8New/007.png">
+<meta property="og:updated_time" content="2018-06-09T06:57:41.026Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java8新特性之Lambda表达式">
 <meta name="twitter:description" content="前言前阵子java9已经出来了，但是请注意这里不是讲java9的新特性，因为java8的新特性笔者之前都没接触过~,毕竟自己做的项目没用上，所以就想着还是等工作的时候遇到了在进行学习吧，没想到实习的公司用到了很多java8的新特性（实习第二天，还是一直处于打酱油的状态(⊙o⊙)…），所以就开始了我的java8新特性的学习之路~~ Lambda表达式简介Lambda表达式是Java8里的一个重要特性">
-<meta name="twitter:image" content="http://52moyong.top/2017/12/12/java8新特性/java8新特性/001.png">
+<meta name="twitter:image" content="http://52moyong.top/2017/12/12/java8新特性/java8New/001.png">
   
     <link rel="alternative" href="/atom.xml" title="moyong的博客" type="application/atom+xml">
   
@@ -217,8 +217,8 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前阵子java9已经出来了，但是请注意这里不是讲java9的新特性，因为java8的新特性笔者之前都没接触过~,毕竟自己做的项目没用上，所以就想着还是等工作的时候遇到了在进行学习吧，没想到实习的公司用到了很多java8的新特性（实习第二天，还是一直处于打酱油的状态(⊙o⊙)…），所以就开始了我的java8新特性的学习之路~~</p>
 <h2 id="Lambda表达式简介"><a href="#Lambda表达式简介" class="headerlink" title="Lambda表达式简介"></a>Lambda表达式简介</h2><p>Lambda表达式是Java8里的一个重要特性，Lambda表达式其实就是提供Java编程中对于函数式编程的支持。Lambda表达式本质上是将一个函数的代码作为一个参数或变量进行传递，这种处理方式有个专门的名字——函数式编程</p>
 <h2 id="lambda表达式之基础语法"><a href="#lambda表达式之基础语法" class="headerlink" title="lambda表达式之基础语法"></a>lambda表达式之基础语法</h2> <a id="more"></a>
-<h4 id="匿名内部类的简化"><a href="#匿名内部类的简化" class="headerlink" title="匿名内部类的简化"></a>匿名内部类的简化</h4><p>以下是java8之前的内部类的写法：<br><img src="java8新特性/001.png" alt=""><br>下面是java8中的写法：<br><img src="java8新特性/002.png" alt=""><br>输出结果：<br><img src="java8新特性/003.png" alt=""><br>首先很明显的看到java8的语法很简洁，省略了很多东西。经过一个小的Demo之后我们大概了解了lambda表达式的书写，我们在来看看他的语法是怎么样的,以下是三种写法：<br>（）-&gt;单条语句<br>（）-&gt;{多条语句}<br>（）-&gt; 表达式<br> 括号可以理解为没有名字的方法，里面是可以带参数的，而-&gt;指向的就是方法体的内容。即（参数1，参数2….）-&gt;{语句1；语句2},例如：（Param param1,Param param2…）-&gt;{param1+param2;system.printIn(“这是java8啊”)}    </p>
-<h4 id="集合的遍历forEach"><a href="#集合的遍历forEach" class="headerlink" title="集合的遍历forEach"></a>集合的遍历forEach</h4><p><strong>java8之前的集合遍历 ：</strong><br><img src="java8新特性/004.png" alt=""><br><strong>java8之后的集合遍历 ：</strong><br><img src="java8新特性/005.png" alt=""><br><strong>注：</strong>参数e的类型是由编译器推测出来的，也可以把类型加上<br><img src="java8新特性/006.png" alt=""> </p>
+<h4 id="匿名内部类的简化"><a href="#匿名内部类的简化" class="headerlink" title="匿名内部类的简化"></a>匿名内部类的简化</h4><p>以下是java8之前的内部类的写法：<br><img src="java8New/001.png" alt=""><br>下面是java8中的写法：<br><img src="java8New/002.png" alt=""><br>输出结果：<br><img src="java8New/003.png" alt=""><br>首先很明显的看到java8的语法很简洁，省略了很多东西。经过一个小的Demo之后我们大概了解了lambda表达式的书写，我们在来看看他的语法是怎么样的,以下是三种写法：<br>（）-&gt;单条语句<br>（）-&gt;{多条语句}<br>（）-&gt; 表达式<br> 括号可以理解为没有名字的方法，里面是可以带参数的，而-&gt;指向的就是方法体的内容。即（参数1，参数2….）-&gt;{语句1；语句2},例如：（Param param1,Param param2…）-&gt;{param1+param2;system.printIn(“这是java8啊”)}    </p>
+<h4 id="集合的遍历forEach"><a href="#集合的遍历forEach" class="headerlink" title="集合的遍历forEach"></a>集合的遍历forEach</h4><p><strong>java8之前的集合遍历 ：</strong><br><img src="java8New/004.png" alt=""><br><strong>java8之后的集合遍历 ：</strong><br><img src="java8New/005.png" alt=""><br><strong>注：</strong>参数e的类型是由编译器推测出来的，也可以把类型加上<br><img src="java8New/006.png" alt=""> </p>
 <h2 id="lambda表达式之进阶实战"><a href="#lambda表达式之进阶实战" class="headerlink" title="lambda表达式之进阶实战"></a>lambda表达式之进阶实战</h2><p>首先，先来看个需求：<br>实现一个可以对List集合进行过滤的filter函数<br>1.从List<person>集合中筛选出性别为女的人。<br>2.从List<phone>集合中筛选出品牌为华为的手机。<br><strong>在java8以前我们是通过匿名内部类实现的</strong><br>1.根据需求实现一个可以对集合元素的fiiter函数  </phone></person></p>
 <pre><code>public List&lt;T&gt; filter(List&lt;T&gt; list,IFilter iFilter){   
     List&lt;T&gt; result =new ArrayList&lt;T&gt;();
@@ -306,7 +306,7 @@
 </code></pre><p>结果：  </p>
 <pre><code>荣耀8
 荣耀9   
-</code></pre><p>哇，是不是看起来舒服很多，即简洁，可读性有好，但是接下来要讲的更重要的一件事情，上面的代码中我们定义了一个可以筛选出所需类型的接口，但是只是定义了筛选的一些共同的部分，具体的针对每个不同的筛选需求，具体的实现是根据筛选的需求规则而定的，这种模式称为策略模式。我们先来看一下策略模式的定义：<br><img src="java8新特性/007.png" alt="007"><br>即我们根据不同的需求提供了不同的筛选算法，而这些算法会根据使用者不同而随之变化。定义筛选方法的接口我们称之为抽象策略角色，不同的筛选算法，我们称之为具体的策略角色。在这里只是抛砖引玉的讲了一下策略模式，最近在项目中也遇到了有使用策略模式的地方，所以对此也有那么点理解，所谓的策略模式，相当于定义了一个入口，然后根据不同的需求执行不同的策略。使用这种模式能够很好的避免写很多重复的代码，而且能够好的管理不同的算法需求，可以很灵活的添加新的需求，使我们的代码结构更加的健壮。</p>
+</code></pre><p>哇，是不是看起来舒服很多，即简洁，可读性有好，但是接下来要讲的更重要的一件事情，上面的代码中我们定义了一个可以筛选出所需类型的接口，但是只是定义了筛选的一些共同的部分，具体的针对每个不同的筛选需求，具体的实现是根据筛选的需求规则而定的，这种模式称为策略模式。我们先来看一下策略模式的定义：<br><img src="java8New/007.png" alt="007"><br>即我们根据不同的需求提供了不同的筛选算法，而这些算法会根据使用者不同而随之变化。定义筛选方法的接口我们称之为抽象策略角色，不同的筛选算法，我们称之为具体的策略角色。在这里只是抛砖引玉的讲了一下策略模式，最近在项目中也遇到了有使用策略模式的地方，所以对此也有那么点理解，所谓的策略模式，相当于定义了一个入口，然后根据不同的需求执行不同的策略。使用这种模式能够很好的避免写很多重复的代码，而且能够好的管理不同的算法需求，可以很灵活的添加新的需求，使我们的代码结构更加的健壮。</p>
 
       
 
@@ -589,11 +589,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">nio 网络编程</a>
+                <a href="javascript:void(0)" class="js-tag color5">-java8 -lambda</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-java8 -lambda</a>
+                <a href="javascript:void(0)" class="js-tag color4">nio 网络编程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -605,15 +605,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">-算法 -分治</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">-数据结构 -线性表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-哈希函数 -哈希表</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -626,6 +618,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">-一致性哈希</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-哈希函数 -哈希表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">-算法 -分治</a>
               </li>
             
             <div class="clearfix"></div>
