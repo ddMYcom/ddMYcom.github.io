@@ -14,16 +14,16 @@
 <meta property="og:url" content="http://52moyong.top/2018/05/27/一致性哈希/index.html">
 <meta property="og:site_name" content="moyong的博客">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://52moyong.top/2018/05/27/一致性哈希/一致性哈希/yzxhx.png">
-<meta property="og:image" content="http://52moyong.top/2018/05/27/一致性哈希/一致性哈希/001.png">
-<meta property="og:image" content="http://52moyong.top/2018/05/27/一致性哈希/一致性哈希/002.png">
-<meta property="og:image" content="http://52moyong.top/2018/05/27/一致性哈希/一致性哈希/003.png">
-<meta property="og:image" content="http://52moyong.top/2018/05/27/一致性哈希/一致性哈希/004.png">
-<meta property="og:image" content="http://52moyong.top/2018/05/27/一致性哈希/一致性哈希/005.png">
-<meta property="og:updated_time" content="2018-06-03T16:19:50.310Z">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fsm0mdcmsij30uf0idazu.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fsm0ng0dz8j310x0ejab2.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fsm28sh3qrj30ys0drwfl.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fsm29b0nvnj30ra0efdgl.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fsm29mw14mj30o40b2glw.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fsm2a097njj30x20dtgmh.jpg">
+<meta property="og:updated_time" content="2018-06-24T02:31:23.258Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一致性哈希">
-<meta name="twitter:image" content="http://52moyong.top/2018/05/27/一致性哈希/一致性哈希/yzxhx.png">
+<meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fsm0mdcmsij30uf0idazu.jpg">
   
     <link rel="alternative" href="/atom.xml" title="moyong的博客" type="application/atom+xml">
   
@@ -210,9 +210,9 @@
         <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="一致性哈希/yzxhx.png" alt=""><br> <a id="more"></a></p>
+        <p><img src="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fsm0mdcmsij30uf0idazu.jpg" alt=""><br> <a id="more"></a></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前面的文章已经介绍了哈希函数和哈希表特点，同时还介绍了哈希函数实现分流的效果，但是这种分流方式还是有缺陷的，而解决这种缺陷的方法正是使用一致性哈希进行解决的。一致性哈希算法在1997年由麻省理工学院提出，设计目标是为了解决因特网中的热点(Hot spot)问题，初衷和CARP十分类似。一致性哈希修正了CARP使用的简单哈希算法带来的问题，使得DHT可以在P2P环境中真正得到应用，这段摘抄至百度，具体一致性哈希是什么往下看就知道了。  </p>
-<h2 id="一致性哈希的解决方案"><a href="#一致性哈希的解决方案" class="headerlink" title="一致性哈希的解决方案"></a>一致性哈希的解决方案</h2><p>上一篇文章中我们使用的哈希函数解决分流问题在增加服务器和减少服务器的时候会存在一定的缺陷，即当我们要增加或减少服务器的时候就需要对所有的数据进行重新进行哈希函数的计算在对增加或减少后的服务器数量进行取模操作，然后在重新的将数据进行分配到各个服务器中，这样带来的数据迁移太大了，所以需要更好的解决方案来进行解决。而解决这个问题的方案就是一致性哈希算法。我们可以假设哈希函数计算出来的的值得范围为0-2^64，然后把这些哈希值看成一个环，然后在把所有机器的ip地址（或者mac地址，只要是能区分机器的就可以）通过同一个hash函数计算出他们的值，而这些值肯定也是在0-2^64，此时我们要添加数据时先把该数据经过哈希函数计算出的结果直接对应到环上的位置（这里前面哈希函数实现分流 不同，不需要在把算出来的哈希值模上机器数了），然后在从改位置按照环顺时针查找找到离它最近的机器，然后就把数据存到该位置上，具体过程如图所示：<br><img src="一致性哈希/001.png" alt=""><br>这里的关键实现是如何顺时针找到离它最近的机器，我们可以这么做，将所有机器的ip算出来的哈希值，组成一个数组，然后在对这个数组的元素进行升序排序。当来一个请求插入数据时，先算出该值得哈希值，然后采用二分方式，找到从左到右第一个大于等于它的值，该值就是所要找到的机器了，过程如下图所示：<br><img src="一致性哈希/002.png" alt=""><br>以上基本上就是一致性哈希的方式进行分流操作的实现了，下面就看看一致性哈希的方式对增加机器后数据迁移量有多大，如图所示：<br><img src="一致性哈希/003.png" alt=""><br>虽然上面以及能解决新增机器的数据迁移量减少了，但是还是存在一个比较严重的问题，那就是机器少的时候会出现负载不均衡的情况，如下所示：<br><img src="一致性哈希/004.png" alt=""><br>从上图来看已经达不到我们想要的负载均衡效果，这是由于机器数量太少，所以经过哈希函数计算后并不能均匀的分布，此时我们就需要增加机器节点的数量，但这里并不是真正的加一大堆机器，而是引入了虚拟节点的技术来帮助我们解决这个问题.<br><img src="一致性哈希/005.png" alt="">     </p>
+<h2 id="一致性哈希的解决方案"><a href="#一致性哈希的解决方案" class="headerlink" title="一致性哈希的解决方案"></a>一致性哈希的解决方案</h2><p>上一篇文章中我们使用的哈希函数解决分流问题在增加服务器和减少服务器的时候会存在一定的缺陷，即当我们要增加或减少服务器的时候就需要对所有的数据进行重新进行哈希函数的计算在对增加或减少后的服务器数量进行取模操作，然后在重新的将数据进行分配到各个服务器中，这样带来的数据迁移太大了，所以需要更好的解决方案来进行解决。而解决这个问题的方案就是一致性哈希算法。我们可以假设哈希函数计算出来的的值得范围为0-2^64，然后把这些哈希值看成一个环，然后在把所有机器的ip地址（或者mac地址，只要是能区分机器的就可以）通过同一个hash函数计算出他们的值，而这些值肯定也是在0-2^64，此时我们要添加数据时先把该数据经过哈希函数计算出的结果直接对应到环上的位置（这里前面哈希函数实现分流 不同，不需要在把算出来的哈希值模上机器数了），然后在从改位置按照环顺时针查找找到离它最近的机器，然后就把数据存到该位置上，具体过程如图所示：<br><img src="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fsm0ng0dz8j310x0ejab2.jpg" alt=""><br>这里的关键实现是如何顺时针找到离它最近的机器，我们可以这么做，将所有机器的ip算出来的哈希值，组成一个数组，然后在对这个数组的元素进行升序排序。当来一个请求插入数据时，先算出该值得哈希值，然后采用二分方式，找到从左到右第一个大于等于它的值，该值就是所要找到的机器了，过程如下图所示：<br><img src="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fsm28sh3qrj30ys0drwfl.jpg" alt=""><br>以上基本上就是一致性哈希的方式进行分流操作的实现了，下面就看看一致性哈希的方式对增加机器后数据迁移量有多大，如图所示：<br><img src="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fsm29b0nvnj30ra0efdgl.jpg" alt=""><br>虽然上面以及能解决新增机器的数据迁移量减少了，但是还是存在一个比较严重的问题，那就是机器少的时候会出现负载不均衡的情况，如下所示：<br><img src="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fsm29mw14mj30o40b2glw.jpg" alt=""><br>从上图来看已经达不到我们想要的负载均衡效果，这是由于机器数量太少，所以经过哈希函数计算后并不能均匀的分布，此时我们就需要增加机器节点的数量，但这里并不是真正的加一大堆机器，而是引入了虚拟节点的技术来帮助我们解决这个问题.<br><img src="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fsm2a097njj30x20dtgmh.jpg" alt="">     </p>
 
       
 
@@ -495,15 +495,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-java8 -lambda</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">-java8 -StreamAPI</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">-哈希函数 -哈希表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-java8 -lambda</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -515,11 +515,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">-算法 -分治</a>
+                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -线性表</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -线性表</a>
+                <a href="javascript:void(0)" class="js-tag color3">-算法 -分治</a>
               </li>
              
               <li class="article-tag-list-item">
