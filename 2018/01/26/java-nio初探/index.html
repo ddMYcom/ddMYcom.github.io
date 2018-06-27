@@ -16,14 +16,14 @@
 <meta property="og:site_name" content="moyong的博客">
 <meta property="og:description" content="背景在公司实习已经有一段时间了，刚开始的时候还是比较兴奋的，因为终于可以真正的做项目啦，但是过了段时间又觉得好像没啥太大进步，毕竟给的需求都比较简单，实现起来还是比较轻松，虽然还是花了比较长的时间（只能怪自己基础不是很牢），但是慢慢的也适应了，就觉得没学到啥新东西，还是挺遗憾的，直到最近主管给我安排了个需求，是实现和硬件通信的，然后给我讲这个项目的整体流程，是基于socket通信的东西，当时跟我讲">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://52moyong.top/2018/01/26/java-nio初探/java-nio初探/nio.jpg">
-<meta property="og:image" content="http://52moyong.top/2018/01/26/java-nio初探/java-nio初探/002.png">
-<meta property="og:image" content="http://52moyong.top/2018/01/26/java-nio初探/java-nio初探/001.png">
-<meta property="og:updated_time" content="2018-05-10T07:13:38.004Z">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fsq2x6mdwjj31kw11wgur.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fsq2xnvvi3j30h40d5glx.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fsq2y0v59gj30jk0a7q39.jpg">
+<meta property="og:updated_time" content="2018-06-27T13:57:14.702Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java nio初探">
 <meta name="twitter:description" content="背景在公司实习已经有一段时间了，刚开始的时候还是比较兴奋的，因为终于可以真正的做项目啦，但是过了段时间又觉得好像没啥太大进步，毕竟给的需求都比较简单，实现起来还是比较轻松，虽然还是花了比较长的时间（只能怪自己基础不是很牢），但是慢慢的也适应了，就觉得没学到啥新东西，还是挺遗憾的，直到最近主管给我安排了个需求，是实现和硬件通信的，然后给我讲这个项目的整体流程，是基于socket通信的东西，当时跟我讲">
-<meta name="twitter:image" content="http://52moyong.top/2018/01/26/java-nio初探/java-nio初探/nio.jpg">
+<meta name="twitter:image" content="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fsq2x6mdwjj31kw11wgur.jpg">
   
     <link rel="alternative" href="/atom.xml" title="moyong的博客" type="application/atom+xml">
   
@@ -298,13 +298,13 @@ public static void main(String[] args) {
 </code></pre><p>}</p>
 <p>从上面的代码可以看出当客户端发送数据给服务端的时候，服务端阻塞到客户端连接后进行读取数据，读取数据过程中如果数据还没有准备好（数据在传输过程中会受到网络带宽等影响），就会阻塞，阻塞过程中线程会失去cpu的使用权，假设读取数据后对数据进行操作处理需要一段时间假设5s，那么10个客户端连接进行数据处理将要50s，这在现代大规模的访问量来说是不能接受的，当然数据的处理我们可以采用多线程的方式来处理，即一个连接一个线程，出现阻塞时只是一个线程阻塞而不影响其他线程的工作，但是当大量连接到来时，使用多线程也会影响系统的开销，因为线程的创建和回收会增加系统的开销，同时线程的切换也是需要时间的，当然合理的使用线程池也就能够减少线程的创建带来的开销，但是这仍然没有能够解决读取数据过程中阻塞操作的问题，依然使用的是同步阻塞模型。  </p>
 <h2 id="NIO带来的解决方案"><a href="#NIO带来的解决方案" class="headerlink" title="NIO带来的解决方案"></a>NIO带来的解决方案</h2><p>首先先总体看一下NIO的结构，NIO的工作方式主要是围绕着Selectors（选择器），Channels（支持异步读写的通道），Buffers（用于读写数据的缓冲区）这三个组件为核心所展开的。如下图：  </p>
-<p><img src="java-nio初探/nio.jpg" alt="">    </p>
+<p><img src="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fsq2x6mdwjj31kw11wgur.jpg" alt="">    </p>
 <p><strong>Channels</strong><br>传统的io是基于字节流和字符流进行操作的，也就是说是面向流的操作，这意味着进行读写操作的时候，如果数据还没有准备好，例如经过网络传输的数据，由于带宽延迟等各种因素，那么当前的线程只能一直阻塞在那里，不能做其他事情，而且传输的数据是没有被缓存在任何地方的，而NIO则是面向通道和缓存的，数据总是从通道读到缓冲区，或者从缓冲区写到通道。<br>通道（Channels）有点类似传统io中的流（Steam）,但是流是单向的而，通道是双向的。通道主要有一下几种分类：<br>1.FileChannel   (文件io)<br>2.DatagramChannel  （udp网络io）<br>3.SocketChannel    (tcp网络id)<br>4.ServerSocketChannel  (监听tcp连接的网络io)<br>主要介绍一下后面两个SocketChannel和ServerSocketChannel，他们的关系相当于传统io中的Socket和Serversocket，服务端通过获取ServerSocketChannel的实例（open()）然后进行阻塞（accept()）接收客户端的连接，客户端的一个新连接就会创建一个SocketChannel实例，然后就可以对这个通道进行操作。<br><strong>Selectors</strong><br>在了解Selectors之前，我们先简单的了解一下UNIX网络编程，在linux内核中会将所有的外部设备看做一个文件来操作，对一个文件的读写操作会调用内核提供的系统命令，然后返回一个文件描述符。<br>根据UNIX网络编程对IO模型的分类，IO模型可以分为以下5种：<br>1.阻塞IO模型<br>2.非阻塞IO模型<br>3.IO复用模型<br>4.信号驱动模型<br>5.异步IO模型<br>下面简单的介绍下IO复用模型中的多路复用技术，NIO中的Selectors就是一种多路复用技术的实现：<br>多路复用技术就是把多个阻塞的IO复用到一个select上进行阻塞，这样就能实现单个线程能够处理多个客户端的请求操作了。多路复用技术主要用于以下场景：   </p>
 <ul>
 <li>服务端需要同时处理多个处于监听状态或者多个连接的套接字  </li>
 <li>服务端需要同时处理多种网络协议的套接字</li>
 </ul>
-<p>目前支持IO多路复用技术的系统调用有select,pselect,poll.epool,在linux中主要选择的是epool来做轮询操作，NIO中也是基于epool实现的多路复用技术，它有以下有点：<br>1.支持一个进程打开文件描述符不受限制，仅限于操作系统的最大文件句柄数<br>2.IO效率不会随着文件秒速符的数量的增加而线性下降<br>3.使用mmap加速内核与用户空间的消息传递<br>4.epool的API更加简单。<br>以上只是对Linux中的一些知识点进行学习（摘抄于Netty权威指南），以便更好的理解NIO中的多路复用技术。 接下来回到我们的NIO的Selectors。<br>选择器，这是NIO实现非阻塞的关键，它是基于事件驱动的，它会监听每一个注册在选择器上channels的IO事件,比如连接事件，接收事件，读事件和写事件。它就类似一个管家管理着我们的IO事件，不断的询问有没有准备好的IO事件有的话就会给对应的channal一把钥匙通知我们我线程去处理，这样就线程就不会一直阻塞在那里等到IO事件准备好才继续工作了，同时也实现可单个线程监听多个channal了。要实现我们的channal交给selector这个管家去管理，必须每个channal都要向selector注册事件。如下图：<br><img src="java-nio初探/002.png" alt=""><br>对于要注册感兴趣的IO事件，主要有以下几种：<br>SelectionKey.OP_CONNECT（连接事件）<br>SelectionKey.OP_ACCEPT（接收事件）<br>SelectionKey.OP_READ （读事件）<br>SelectionKey.OP_WRITE（写事件）<br>这些数据的在我们的程序中正是用上面这四个常量来表示的，当然可以对多个感兴趣的事件进行注册我们可以用“或”  操作符来表示    </p>
+<p>目前支持IO多路复用技术的系统调用有select,pselect,poll.epool,在linux中主要选择的是epool来做轮询操作，NIO中也是基于epool实现的多路复用技术，它有以下有点：<br>1.支持一个进程打开文件描述符不受限制，仅限于操作系统的最大文件句柄数<br>2.IO效率不会随着文件秒速符的数量的增加而线性下降<br>3.使用mmap加速内核与用户空间的消息传递<br>4.epool的API更加简单。<br>以上只是对Linux中的一些知识点进行学习（摘抄于Netty权威指南），以便更好的理解NIO中的多路复用技术。 接下来回到我们的NIO的Selectors。<br>选择器，这是NIO实现非阻塞的关键，它是基于事件驱动的，它会监听每一个注册在选择器上channels的IO事件,比如连接事件，接收事件，读事件和写事件。它就类似一个管家管理着我们的IO事件，不断的询问有没有准备好的IO事件有的话就会给对应的channal一把钥匙通知我们我线程去处理，这样就线程就不会一直阻塞在那里等到IO事件准备好才继续工作了，同时也实现可单个线程监听多个channal了。要实现我们的channal交给selector这个管家去管理，必须每个channal都要向selector注册事件。如下图：<br><img src="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fsq2xnvvi3j30h40d5glx.jpg" alt=""><br>对于要注册感兴趣的IO事件，主要有以下几种：<br>SelectionKey.OP_CONNECT（连接事件）<br>SelectionKey.OP_ACCEPT（接收事件）<br>SelectionKey.OP_READ （读事件）<br>SelectionKey.OP_WRITE（写事件）<br>这些数据的在我们的程序中正是用上面这四个常量来表示的，当然可以对多个感兴趣的事件进行注册我们可以用“或”  操作符来表示    </p>
 <pre><code>SelectionKey.OP_READ | SelectionKey.OP_WRITE  
 </code></pre><p>注册事件后我们需要对selector进行轮询操作，当你的注册的事件已经准备就绪，那么regitor会返回一个selectionkey对象，这个对象包含了一些你感兴趣的属性：   </p>
 <ul>
@@ -327,7 +327,7 @@ public static void main(String[] args) {
 <p>5.清除缓冲区（为写作准备）：  </p>
 <ul>
 <li>crear()清空整个缓冲区,position置0，未读的数据将会被遗忘  </li>
-<li>compact()清除已经读过的数据，将所有未读的数据拷贝到Buffer起始处，position为最后一个未读数据的后面<br><img src="java-nio初探/001.png" alt=""> </li>
+<li>compact()清除已经读过的数据，将所有未读的数据拷贝到Buffer起始处，position为最后一个未读数据的后面<br><img src="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fsq2y0v59gj30jk0a7q39.jpg" alt=""> </li>
 </ul>
 <h2 id="实践Demo"><a href="#实践Demo" class="headerlink" title="实践Demo"></a>实践Demo</h2><p>上面已经把Channels，Selectors，Buffers简单的了解了一遍，所以接下来就要通过一个客户端和服务端通信的Demo去加深理解NIO的使用<br><strong>服务端：</strong></p>
 <pre><code>public class NioServer implements Runnable {
@@ -777,11 +777,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-哈希函数 -哈希表</a>
+                <a href="javascript:void(0)" class="js-tag color5">-java8 -lambda</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-java8 -lambda</a>
+                <a href="javascript:void(0)" class="js-tag color2">-一致性哈希</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -789,11 +789,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">-随笔 -笔记</a>
+                <a href="javascript:void(0)" class="js-tag color1">-哈希函数 -哈希表</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -线性表</a>
+                <a href="javascript:void(0)" class="js-tag color3">-随笔 -笔记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -805,11 +805,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -二叉树</a>
+                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -线性表</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-一致性哈希</a>
+                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -二叉树</a>
               </li>
             
             <div class="clearfix"></div>

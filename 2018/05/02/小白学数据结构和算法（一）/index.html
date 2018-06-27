@@ -14,13 +14,13 @@
 <meta property="og:url" content="http://52moyong.top/2018/05/02/小白学数据结构和算法（一）/index.html">
 <meta property="og:site_name" content="moyong的博客">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://52moyong.top/2018/05/02/小白学数据结构和算法（一）/小白学数据结构和算法（一）/sf1.png">
-<meta property="og:image" content="http://52moyong.top/2018/05/02/小白学数据结构和算法（一）/小白学数据结构和算法（一）/gb1.png">
-<meta property="og:image" content="http://52moyong.top/2018/05/02/小白学数据结构和算法（一）/小白学数据结构和算法（一）/kp1.png">
-<meta property="og:updated_time" content="2018-05-12T03:28:44.214Z">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fsq26f05wnj30un0kmax4.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fsq27p1pkxj31100epdhe.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fsq29lm7xaj31100ecabb.jpg">
+<meta property="og:updated_time" content="2018-06-27T13:33:11.103Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小白学算法--分治算法">
-<meta name="twitter:image" content="http://52moyong.top/2018/05/02/小白学数据结构和算法（一）/小白学数据结构和算法（一）/sf1.png">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fsq26f05wnj30un0kmax4.jpg">
   
     <link rel="alternative" href="/atom.xml" title="moyong的博客" type="application/atom+xml">
   
@@ -207,10 +207,10 @@
         <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="小白学数据结构和算法（一）/sf1.png" alt=""><br> <a id="more"></a></p>
+        <p><img src="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fsq26f05wnj30un0kmax4.jpg" alt=""><br> <a id="more"></a></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>程序=数据结构+算法，虽然还是不太能领悟这个这个结论的意思。但是听很多前辈说数据结构和算法是程序员的内功心法，所以对数据结构和算法小白的我，要慢慢的修炼这门内功心法，慢慢向大白靠拢~~~</p>
 <h2 id="分治算法概述"><a href="#分治算法概述" class="headerlink" title="分治算法概述"></a>分治算法概述</h2><p>分治算法的思想是当我们遇到一个规模为N的大问题时可以分解成若干个K规模的小问题进行解决，这些小问题需要解决的问题与规模为N的问题性质是一样的，但是又是相互独立的，通过一个个小问题不断的解决后在不断的组合成最终解决大问题的过程。即分而治之的过程。而这里主要是通过基础的排序算法来学习分治算法的思想。排序算法有很多种，冒泡，插入，选择，归并，快速排序，堆排序等等，就主要选取体现分治思想的两个排序算法来学习，归并和快排（注：并不是只有这两个排序算法才是体现分治思想）</p>
-<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>归并排序的主要思路是将一堆无序的数分为按照中间索引分解成左右两部分，先对左右两部分进行排序使左右两部分有序，再对左右两部分进行合并进行比较排序，这是总的思路。而左右两边的排序也是和总的思路一样，先拆分后合并，最后是不断的往下拆分成一个个数，最后在不断的往上合并得到一个有序数。而合并的过程是将左右两边的数各自从各自左边的数开始进行比较，小的就放到一放到一个准备好的辅助数组里面，然后小的数指针将往前移动继续和另一边的数进行比较。最后在把辅组数组的数依次填充到原数组中。下图为归并排序的过程图：<br><img src="小白学数据结构和算法（一）/gb1.png" alt=""><br>具体代码实现如下：  </p>
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>归并排序的主要思路是将一堆无序的数分为按照中间索引分解成左右两部分，先对左右两部分进行排序使左右两部分有序，再对左右两部分进行合并进行比较排序，这是总的思路。而左右两边的排序也是和总的思路一样，先拆分后合并，最后是不断的往下拆分成一个个数，最后在不断的往上合并得到一个有序数。而合并的过程是将左右两边的数各自从各自左边的数开始进行比较，小的就放到一放到一个准备好的辅助数组里面，然后小的数指针将往前移动继续和另一边的数进行比较。最后在把辅组数组的数依次填充到原数组中。下图为归并排序的过程图：<br><img src="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fsq27p1pkxj31100epdhe.jpg" alt=""><br>具体代码实现如下：  </p>
 <pre><code>public class MergeSort {
 public static void  mergesort(int [] arr){
     //如果是null或者是1个数就没有比的必要
@@ -260,7 +260,7 @@ public static void main(String[] args) {
     mergesort(arr);
     System.out.println(Arrays.toString(arr));
 }
-</code></pre><h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>快速排序的基本思路是将一堆需要排序的数据从中取一个数（经典快排取的是最后一位，随机快排是随机取一个数然后与最后一位数交换位置）来对整个数据进行比较，比选出的数小的放左边，比选出的数大的数放右边，等于选出的数放中间，即划分成三个部分（也可以划分两部分小于等于选出的数的放左边，大于放右边）然后在按此方法对左右两边的数据进行同样的操作，从而达到整个数据为有序状态。快排的基本步骤是<br>1.准备数组的左右指针L,R（数组索引的左右边界下标值）<br>2.准备两个左右边界以外的两个指针，x=L-1,y=R+1 ,<br>3.取数组的最后一位数最为对比数 ，<br>4.比较的过程为，从L指针开始，如果L指针上的数小于对比数，x指针向前移动一位，移动后的数与L指针上的数进行交换位置，L指针再继续往前移动，如果L指针上的数大于对比数，那么Y指针向后移动一步，并且与L指针上的数交换位置，L指针不移动，在继续与对比数进行比较。如果L指针上的数等于对比数，那么不做交换，只需要把L指针往前移动一步。<br>5.把一轮排序过后的等于值的左右边界指针（索引）返回，然后在把小于对比数的左边部分（范围为：L到等于值左索引-1），大于对比数的右边部分（范围为：等于值右索引+1到R）继续重复上述过程<br>以下是快排实现过程图：<br><img src="小白学数据结构和算法（一）/kp1.png" alt=""><br>具体代码实现过程如下所示：  </p>
+</code></pre><h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>快速排序的基本思路是将一堆需要排序的数据从中取一个数（经典快排取的是最后一位，随机快排是随机取一个数然后与最后一位数交换位置）来对整个数据进行比较，比选出的数小的放左边，比选出的数大的数放右边，等于选出的数放中间，即划分成三个部分（也可以划分两部分小于等于选出的数的放左边，大于放右边）然后在按此方法对左右两边的数据进行同样的操作，从而达到整个数据为有序状态。快排的基本步骤是<br>1.准备数组的左右指针L,R（数组索引的左右边界下标值）<br>2.准备两个左右边界以外的两个指针，x=L-1,y=R+1 ,<br>3.取数组的最后一位数最为对比数 ，<br>4.比较的过程为，从L指针开始，如果L指针上的数小于对比数，x指针向前移动一位，移动后的数与L指针上的数进行交换位置，L指针再继续往前移动，如果L指针上的数大于对比数，那么Y指针向后移动一步，并且与L指针上的数交换位置，L指针不移动，在继续与对比数进行比较。如果L指针上的数等于对比数，那么不做交换，只需要把L指针往前移动一步。<br>5.把一轮排序过后的等于值的左右边界指针（索引）返回，然后在把小于对比数的左边部分（范围为：L到等于值左索引-1），大于对比数的右边部分（范围为：等于值右索引+1到R）继续重复上述过程<br>以下是快排实现过程图：<br><img src="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fsq29lm7xaj31100ecabb.jpg" alt=""><br>具体代码实现过程如下所示：  </p>
 <pre><code>public class QuickSort {
 public static void quickSort(int[] arr){
     if (arr == null || arr.length &lt; 2) {
@@ -596,11 +596,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-哈希函数 -哈希表</a>
+                <a href="javascript:void(0)" class="js-tag color5">-java8 -lambda</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-java8 -lambda</a>
+                <a href="javascript:void(0)" class="js-tag color2">-一致性哈希</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -608,11 +608,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">-随笔 -笔记</a>
+                <a href="javascript:void(0)" class="js-tag color1">-哈希函数 -哈希表</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -线性表</a>
+                <a href="javascript:void(0)" class="js-tag color3">-随笔 -笔记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -624,11 +624,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -二叉树</a>
+                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -线性表</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">-一致性哈希</a>
+                <a href="javascript:void(0)" class="js-tag color1">-数据结构 -二叉树</a>
               </li>
             
             <div class="clearfix"></div>
